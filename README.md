@@ -7,7 +7,7 @@ The Journey of our *DotA 2 MMR*
 
 - Login admin : root/panel/
   - Admin User : fajarmf:stupidmonkey
-  - Operator : ashkan:ashkanyasin
+  - Operator : askan:askanyasin
 - Login peserta : root/
   - **TBD**
 
