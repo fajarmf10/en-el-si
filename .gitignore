@@ -1,0 +1,9 @@
+
+*.pdm
+*.cdb
+*.cdbasdasd
+*.cdm
+
+media/source/
+
+media/thumbs/

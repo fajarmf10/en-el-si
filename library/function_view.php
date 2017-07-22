@@ -1,0 +1,39 @@
+<?php
+function create_title($icon, $title){
+   echo '<h3 class="title"><i class="glyphicon glyphicon-'.$icon.'"></i> '.$title.'</h3>';
+}
+
+function create_button($color, $icon, $text, $class = "", $action=""){
+   echo '<a class="btn btn-'.$color.' '.$class.' btn-top pull-right" onclick="'.$action.'"><i class="glyphicon glyphicon-'.$icon.'"></i> '.$text.'</a>';
+}
+
+function create_table($header){
+   echo'<hr/><div class="table-responsive">
+   <table class="table table-striped" width="100%">
+   <thead><tr>
+   <th style="width: 10px">No</th>';
+
+foreach($header as $h){
+   echo '<th>'.$h.'</th>';
+}
+	
+   echo '</tr></thead>
+   <tfooter><tr>
+   <th style="width: 10px">No</th>';
+	
+foreach($header as $h){
+  echo '<th>'.$h.'</th>';
+}			
+	
+   echo'</tr></tfooter>
+   </table>
+   </div><br/>';
+}
+
+function create_action($id, $edit=true, $delete=true){
+   $view = "";
+   if($edit) $view .= ' <a class="btn btn-primary btn-edit" onclick="form_edit('.$id.')"><i class="glyphicon glyphicon-pencil"></i></a>';
+   if($delete)	$view .= ' <a class="btn btn-danger btn-delete" onclick="delete_data('.$id.')"><i class="glyphicon glyphicon-trash"></i></a>';
+   return $view;
+}
+?>

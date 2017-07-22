@@ -1,0 +1,2 @@
+Admin = mengatur data ujian, manajemen tiap edisi sch, manajemen soal, data tim, ujian tiap edisi
+Operator = manajemen ujian (memulai ujian, pause ujian, reset user)
