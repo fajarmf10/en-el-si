@@ -20,7 +20,7 @@ function form_add(){
 	
 function form_edit(id){
    save_method = "edit";
-   $('#modal_siswa').modal('show');
+   $('#modal_peserta').modal('show');
    $('#modal_peserta form')[0].reset();
    $.ajax({
       url : "ajax/ajax_peserta.php?action=form_data&id="+id,
@@ -28,7 +28,6 @@ function form_edit(id){
       dataType : "JSON",
       success : function(data){
          $('.modal-title').text('Edit Peserta');
-
          $('#id_tim').val(data.id_tim).attr('readonly',true);
          $('#nama').val(data.nama);
          $('#edisi').val(data.id_edisi);

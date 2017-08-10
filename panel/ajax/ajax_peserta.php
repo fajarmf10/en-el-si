@@ -13,7 +13,7 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['id_tim'];
       $row[] = $r['nama'];
-      $row[] = substr(md5($r['id_tim']),0,5);
+      $row[] = md5($r['id_tim']);
       $row[] = $edisi['edisi'];
       $row[] = create_action($r['id_tim']);
       $data[] = $row;
@@ -31,7 +31,7 @@ elseif($_GET['action'] == "form_data"){
 }
 
 elseif($_GET['action'] == "insert"){
-   $password = md5(substr(md5($_POST['id_tim']),0,5));
+   $password = md5($_POST['id_tim']);
    $jml = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM peserta WHERE id_tim='$_POST[id_tim]'"));
    if($jml > 0){
       echo "ID Tim sudah digunakan!";

@@ -1,0 +1,13 @@
+<?php
+  session_start();
+  ob_start();
+  include "library/config.php";
+  mysqli_query($mysqli, "UPDATE peserta SET status='off' WHERE id_tim='$_SESSION[id_tim]'");
+  
+  session_destroy();
+  ob_clean();
+  echo "<script>
+   alert('Terima kasih!'); 
+   window.location = 'login.php';
+   </script>";
+?>

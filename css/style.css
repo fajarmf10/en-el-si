@@ -1,0 +1,118 @@
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+   background: #888;
+   color: #eee;
+   transition: 1s ease;
+}
+body{
+   background: #eee;
+}
+h3.page-header{
+   margin-top: 0;
+}
+#content{
+   font-size: 18px;
+   background: #fff;
+   margin-top: 60px;
+   min-height: 80%;
+   padding: 20px;
+   border: 1px solid #ccc;
+   box-shadow: 0 0 3px #ccc;
+   overflow: hidden;
+}
+footer{
+   padding: 10px 0;
+   color: #888;
+}
+
+
+/*------------------ HALAMAN TES ---------------- */
+
+
+.blok-soal{
+   display: none;
+}
+.blok-soal.active{
+   display: block;
+}
+.nomor, .huruf{
+   display: block;
+   width: 35px;
+   padding: 5px 0;
+   text-align: center;
+   border: 1px solid #ccc;
+   border-radius: 50%;
+   cursor: pointer;
+}
+.nomor{
+   background: blue;
+   color: #fff;
+}
+.huruf-A{
+   background: url('../images/A.png') no-repeat;
+}
+.huruf-B{
+   background: url('../images/B.png') no-repeat;
+}
+.huruf-C{
+   background: url('../images/C.png') no-repeat;
+}
+.huruf-D{
+   background: url('../images/D.png') no-repeat;
+}
+.huruf-E{
+   background: url('../images/E.png') no-repeat;
+}
+.huruf-pilihan{
+   width: 28px;
+   height: 28px;
+   cursor: pointer;
+   display: inline-block;
+}
+/*Menyembunyikan input radio*/
+input[type=radio]{
+   display: none;
+}
+input[type=radio]:checked ~ .huruf-pilihan{
+   background: url('../images/pilih.png') no-repeat;
+}
+.pilihan{
+   margin-bottom: 20px;
+}
+.pilihan .teks{
+   padding-top: 10px;
+}
+.konten-ujian, .nomor-ujian{
+   border: 1px solid #eee;
+   padding: 10px;
+   height: 100%;  
+}
+.blok-soal .box{
+   height: 400px;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
+.blok-nomor{
+   width: 20%;
+   display: inline-block;
+}
+.blok-nomor .box{
+   padding: 5px;
+}
+.tombol-nomor{
+   display: block;
+   width: 100%;
+   padding: 10px 0;
+   text-align: center;
+   background: red;
+   color: #fff;
+   border: 2px solid #000;
+   cursor: pointer;
+}
+.tombol-nomor.green{
+   background: green;
+}
+.tombol-nomor.yellow{
+   background: yellow;
+   color: #000;
+}

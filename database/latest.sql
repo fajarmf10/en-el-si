@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2017 at 10:09 AM
+-- Generation Time: Aug 10, 2017 at 09:15 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -57,7 +57,7 @@ CREATE TABLE `edisites` (
 
 INSERT INTO `edisites` (`id_tes`, `id_edisi`, `aktif`) VALUES
 (3, 1, 'Y'),
-(4, 1, 'Y'),
+(4, 1, 'N'),
 (4, 2, 'Y');
 
 -- --------------------------------------------------------
@@ -72,10 +72,17 @@ CREATE TABLE `nilai` (
   `id_tes` int(11) NOT NULL,
   `acak_soal` text NOT NULL,
   `jawaban` text NOT NULL,
-  `sisa_waktu` int(11) NOT NULL,
+  `sisa_waktu` varchar(10) NOT NULL,
   `jml_benar` int(11) NOT NULL,
   `nilai` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`id_nilai`, `id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`) VALUES
+(8, '201701001', 3, '6,7,5,1,2,8,4', '5,1,0,0,0,0,0', '188:12', 0, '');
 
 -- --------------------------------------------------------
 
@@ -118,8 +125,8 @@ CREATE TABLE `peserta` (
 --
 
 INSERT INTO `peserta` (`id_tim`, `nama`, `password`, `id_edisi`, `status`) VALUES
-('asik_deq', 'asdeq', '37f67e08f90c807878c65521d6fdb24b', 1, 'off'),
-('huerzo_smanda', 'Huerzo', '5f9f534099bd1dc4305fd48bf4410665', 2, 'off');
+('201701001', 'asdeq', '7bd61046f3f64c0a53410011aa8ef37f', 1, 'mengerjakan'),
+('201701002', 'Huerzo', '5f9f534099bd1dc4305fd48bf4410665', 2, 'off');
 
 -- --------------------------------------------------------
 
@@ -144,11 +151,13 @@ CREATE TABLE `soal` (
 --
 
 INSERT INTO `soal` (`id_soal`, `id_tes`, `soal`, `pilihan_1`, `pilihan_2`, `pilihan_3`, `pilihan_4`, `pilihan_5`, `kunci`) VALUES
-(1, 4, '<p>Ayam apa yang nakal?</p>', '<p>Tidak mandi ya?</p>', '<p>Tidak gosok gigi 2</p>', '<p>Pejuang</p>', '<p>Pernahkah aku sakit?</p>', '<p>Rindu mantan</p>', 5),
-(2, 4, '<p>tes soal 2</p>', '<p>Tidak mandi besar</p>', '<p>Tidak gosok gigi anjing</p>', '<p>Pejuang jancok</p>', '<p>Pernahkah aku sakit? 2</p>', '<p>Rindu mantan? Hehe</p>', 2),
-(4, 4, '<p>Why is everything so heavy?</p>', '<p>Linkin Park</p>', '<p>Avenged Sevenfold</p>', '<p>Mantap anjing</p>', '<p>Kiaara</p>', '<p>Tiara</p>', 3),
-(5, 4, '<p>Berwarna apakah sebuah gurun?</p>', '<p>Hijau</p>', '<p>Merah</p>', '<p>Kuning</p>', '<p>Abu-abu</p>', '<p>Oranye</p>', 3),
-(6, 4, '<p>Sembari pergi</p>', '<p>1</p>', '<p>2</p>', '<p>3</p>', '<p>4</p>', '<p>455</p>', 5);
+(1, 3, '<p>Ayam apa yang nakal?</p>', '<p>Tidak mandi ya?</p>', '<p>Tidak gosok gigi 2</p>', '<p>Pejuang</p>', '<p>Pernahkah aku sakit?</p>', '<p>Rindu mantan</p>', 5),
+(2, 3, '<p>tes soal 2</p>', '<p>Tidak mandi besar</p>', '<p>Tidak gosok gigi anjing</p>', '<p>Pejuang jancok</p>', '<p>Pernahkah aku sakit? 2</p>', '<p>Rindu mantan? Hehe</p>', 2),
+(4, 3, '<p>Why is everything so heavy?</p>', '<p>Linkin Park</p>', '<p>Avenged Sevenfold</p>', '<p>Mantap anjing</p>', '<p>Kiaara</p>', '<p>Tiara</p>', 3),
+(5, 3, '<p>Berwarna apakah sebuah gurun?</p>', '<p>Hijau</p>', '<p>Merah</p>', '<p>Kuning</p>', '<p>Abu-abu</p>', '<p>Oranye</p>', 3),
+(6, 3, '<p>Sembari pergi</p>', '<p>1</p>', '<p>2</p>', '<p>3</p>', '<p>4</p>', '<p>455</p>', 5),
+(7, 3, '<p>Beberapa software web design yang sering dipakai antara lain</p>', '<p>Microsoft Frontpage, Macromedia Fireworks, Mysql</p>', '<p>Microsoft Frontpage, Macromedia Fireworks, Php</p>', '<p>Macromedia Dreamweaver, Adobe ImageReady, ASP</p>', '<p>Macromedia Dreamweaver, Adobe ImageReady, Corel Draw</p>', '<p>Macromedia Dreamweaver, Microsoft Frontpage, Macromedia Fireworks.</p>', 5),
+(8, 3, '<p>Fungsi dari tag HTML &lt;head&gt;&lt;/head&gt; adalah</p>', '<p>Mendefinisikan judul yang hendak ditampilkan pada browser</p>', '<p>Mendefinisikan bahwa teks yang berada diantara kedua tag tersebut adalah file HTML</p>', '<p>Mendefinisikan head dalam sebuah file HTML.</p>', '<p>Mendefinisikan teks yang hendak ditampilkan sebagai isi halaman web</p>', '<p>Mendefinisikan &lt;&gt; dalam sebuah file HTML.</p>', 3);
 
 -- --------------------------------------------------------
 
@@ -171,8 +180,8 @@ CREATE TABLE `tes` (
 --
 
 INSERT INTO `tes` (`id_tes`, `judul`, `tanggal`, `waktu`, `jml_soal`, `acak_soal`, `acak_jawaban`) VALUES
-(3, 'Schhhhhhh17', '2017-07-13', 190, 150, 'Y', 'Y'),
-(4, 'Warmup dude', '2017-07-19', 129, 123, 'Y', 'Y');
+(3, 'Schhhhhhh17', '2017-08-10', 190, 150, 'Y', 'Y'),
+(4, 'Warmup dude', '2017-08-04', 129, 123, 'N', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -227,12 +236,12 @@ ALTER TABLE `edisi`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tes`
 --

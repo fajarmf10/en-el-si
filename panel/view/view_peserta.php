@@ -21,7 +21,7 @@ open_form("modal_peserta", "return save_data()");
    echo'<div class="form-group">
    <label for="id_tim" class="col-sm-2 control-label"> ID Tim</label>
    <div class="col-sm-4">
-      <input type="number" class="form-control" id="id_tim" name="id_tim" min="1" required>
+      <input type="number" class="form-control" id="id_tim" name="id_tim" min="201701001" required>
    </div> </div>';
 
    create_textbox("Nama Tim", "nama", "text", 6, "", "required");
