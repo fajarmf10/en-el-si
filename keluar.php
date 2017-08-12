@@ -2,12 +2,11 @@
 
 <div class="panel panel-default panel-keluar">
    <div class="panel-heading">
-      <h3><b>Konfirmasi Test</b></h3>
+      <h3><b>Konfirmasi Tes</b></h3>
    </div>
    <div class="panel-body text-center">
-		Apakah anda yakin akan mengakhiri tes?<br>
-		Semua jawaban yang anda kirimkan tidak bisa diubah lagi setelah mengklik tombol logout.
-		Anda juga tidak akan bisa login kembali.
+		Terima kasih telah berpartisipasi dalam Schematics tahun ini!<br>
+		Semoga blablabla.
    </div>
    <div class="panel-footer">
 		<div class="row">
