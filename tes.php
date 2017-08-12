@@ -7,7 +7,6 @@ if(empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
    header('location: login.php');
 }
 
-
 //ubah status peserta dan membuat array untuk tabel nilai
 mysqli_query($mysqli, "UPDATE peserta SET status='mengerjakan' WHERE id_tim='$_SESSION[id_tim]'");
 
@@ -39,24 +38,13 @@ $qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tim='$_SESSION[id_
 $rnilai = mysqli_fetch_array($qnilai);
 $sisa_waktu = explode(":", $rnilai['sisa_waktu']);
 
-echo '<div class="padding-20">';
-echo '<div class="list-group">';
+echo '<h3 class="page-header"><b>'.$qwtes['judul'].' <span class="pull-right"> Sisa Waktu: <span class="menit">'.$sisa_waktu[0].'</span> : <span class="detik"> '.$sisa_waktu[1].' </span></span></b></h3>
 
-echo '<div class="list-group-item floating">
-   <b>NO SOAL</b><span class="no-soal">1</span>
-   <div class="pull-right blok-waktu"><label> Sisa Waktu </label> <span class="waktu"><span class="menit">'.$sisa_waktu[0].'</span> : <span class="detik"> '.$sisa_waktu[1].' </span></span></div>
-   </div>';
-
-echo '<div class="list-group-item bg-abu">
-      Ukuran font soal : <span class="ukuran-font"><a class="kecil" data-size="16">A</a> <a class="sedang" data-size="18">A</a> <a class="besar" data-size="20">A</a></span>
-   </div>';
-   
-echo '<div class="list-group-item">';
-echo'<input type="hidden" id="tes" value="'.$_GET['tes'].'">
-   <input type="hidden" id="sisa_waktu">';
-   
+<input type="hidden" id="tes" value="'.$_GET['tes'].'">
+<input type="hidden" id="sisa_waktu">';
+	
 echo '<div class="row">
-   <div class="col-md-12"><div class="konten-ujian">';   
+	<div class="col-md-8"><div class="konten-ujian">';	
 
 //Output soal dari db
 $arr_soal = explode(",", $rnilai['acak_soal']);
@@ -71,13 +59,12 @@ for($s=0; $s<count($arr_soal); $s++){
    $soal = str_replace("../media", "media", $rsoal['soal']);
    $active = ($no==1) ? "active" : "";
    echo '<div class="blok-soal soal-'.$no.' '.$active.'">
-         <div class="box">
-         <div class="soal">';
-   echo $soal;
-   echo'</div>';
-   
-   echo '<table class="row pilihan">';
-   
+<div class="box">
+<div class="row">
+   <div class="col-xs-1"><div class="nomor">'.$no.'</div></div>
+   <div class="col-xs-11"><div class="soal">'.$soal.'</div> </div>
+</div>';
+
 //Acak-acak
    $arr_pilihan = array();
    if($rsoal['pilihan_1']!="")$arr_pilihan[] = array("no" => 1, "pilihan" => $rsoal['pilihan_1']);
@@ -85,104 +72,72 @@ for($s=0; $s<count($arr_soal); $s++){
    if($rsoal['pilihan_3']!="")$arr_pilihan[] = array("no" => 3, "pilihan" => $rsoal['pilihan_3']);
    if($rsoal['pilihan_4']!="")$arr_pilihan[] = array("no" => 4, "pilihan" => $rsoal['pilihan_4']);
    if($rsoal['pilihan_5']!="") $arr_pilihan[] = array("no" => 5, "pilihan" => $rsoal['pilihan_5']);
-   
+
 if($qwtes['acak_jawaban']=='Y') shuffle($arr_pilihan);
 
-//Pilihan
-   $arr_huruf = array("A","B","C","D","E");  
+//Pilihan	
+   $arr_huruf = array("A","B","C","D","E");	
    $arr_class[$no] = ($arr_jawaban[$s]!=0) ? "green" : "";
    for($i=0; $i<count($arr_pilihan); $i++){
       $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
       $pilihan = str_replace("../media", "media", $arr_pilihan[$i]['pilihan']);
-      echo '<tr>
-      <td width="50"></td>
-      <td width="60">
-         <input type="radio" class="jawab-'.$no.'" data-huruf="'.$arr_huruf[$i].'" name="jawab-'.$no.'" id="huruf-'.$no.'-'.$i.'" '.$checked.'>
-         <label for="huruf-'.$no.'-'.$i.'" class="huruf-pilihan huruf-'.$arr_huruf[$i].'" onclick="kirim_jawaban('.$s.', '.$arr_pilihan[$i]['no'].')"></label>
-      </td>
-      <td valign="top">
-         <div class="teks">'.$pilihan.' </div> 
-      </td>
-      </tr>';
+      echo '<div class="row pilihan">
+   <div class="col-xs-1 col-xs-offset-1">
+   <input type="radio" name="jawab-'.$no.'" data-huruf="'.$arr_huruf[$i].'" name="jawab-'.$no.'" id="huruf-'.$no.'-'.$i.'" '.$checked.'>
+   <label for="huruf-'.$no.'-'.$i.'" class="huruf-pilihan huruf" onclick="kirim_jawaban('.$s.', '.$arr_pilihan[$i]['no'].')"> '.$arr_huruf[$i].' </label>
+</div>
+<div class="col-xs-10">
+   <div class="teks">'.$pilihan.' </div> 
+</div>
+</div>';
    }
 
-   echo '</table></div>';
-   
-//8 Tombol navigasi dkk
-   
-   echo'<br><br><div class="row"><div class="col-md-2">';
+//Tombol navigasi dkk
+   echo '</div><br/><div class="row"><div class="col-md-3">';
    
    $sebelumnya = $no-1;
-   if($no != 1) echo '<a class="btn btn-default btn-block" onclick="tampil_soal('.$sebelumnya.')"><span class="btn-left"></span> SOAL SEBELUMNYA</a>';
-   else echo '<a class="btn btn-default btn-block"><span class="btn-left"></span>SOAL SEBELUMNYA</a>';
-   
+   if($no != 1) echo '<a class="btn btn-primary btn-block" onclick="tampil_soal('.$sebelumnya.')">Soal Sebelumnya</a>';
    echo '</div>
-   <div class="col-md-2 col-md-offset-3 geser"><label class="btn btn-warning btn-block"> <input type="checkbox" autocomplete="off" onchange="ragu_ragu('.$no.')"> RAGU-RAGU </label></div>   
-   <div class="col-md-2 col-md-offset-3 geser">';
-   
+   <div class="col-md-4 col-md-offset-1"><label class="btn btn-warning btn-block"> <input type="checkbox" autocomplete="off" onchange="ragu_ragu('.$no.')"> Ragu-ragu</label></div>	
+<div class="col-md-3 col-md-offset-1">';
+	
    $berikutnya = $no+1;
-   if($no != count($arr_soal)) echo '<a class="btn btn-primary btn-block" onclick="tampil_soal('.$berikutnya.')"> SOAL BERIKUTNYA <span class="btn-right"></span></a>';
-   else echo '<a class="btn btn-danger btn-block" onclick="selesai()"> SELESAI <span class="btn-right"></span> </a>';
+   if($no != count($arr_soal)) echo '<a class="btn btn-primary btn-block" onclick="tampil_soal('.$berikutnya.')">Soal Berikutnya</a>';
+   else echo '<a class="btn btn-danger btn-block" onclick="selesai()"> Selesai </a>';
 
-   echo '</div>
-      </div>
-      </div>';
+   echo '</div></div></div>';
 }
 
-echo '</div></div></div>';
+echo '</div></div>
+	<div class="col-md-4">
+      <div class="text-center">DAFTAR SOAL</div>
+   <div class="nomor-ujian"><div class="blok">';
 
-echo '</div></div></div>';
-
-//Nomor soal
-echo '<div class="tombol1 tombol-sidebar" onclick="masuk()"></div><div class="tombol2 tombol-sidebar" onclick="keluar()">DAFTAR SOAL</div>';
-echo '<div class="nomor-ujian"><div class="blok">';
+//Nomor Soal
 for($j=1; $j<=$s; $j++){
-   if($j==1) $cclass = "blue";
-   else $cclass = "";
-   
-   echo '<div class="blok-nomor"><div class="box"> <a class="tombol-nomor tombol-'.$j.' '.$cclass.' '.$arr_class[$j].'" onclick="tampil_soal('.$j.')" data-id="'.$j.'">'.$j.'</a> <span class="huruf"></span></div></div>';
+   echo '<div class="blok-nomor"><div class="box"> <a class="tombol-nomor tombol-'.$j.' '.$arr_class[$j].'" onclick="tampil_soal('.$j.')">'.$j.'</a></div></div>';
 }
-
 echo '</div></div>';
 
 //Modal ketika selesasi
 echo '<div class="modal fade" id="modal-selesai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
    <div class="modal-content">
-   <form  method="post" action="?content=selesai">
+   <form  onsubmit="return selesai_tes('.$_GET['tes'].')">
       
 <div class="modal-header">
-  <h3 class="modal-title">Schematics ITS</h3>
+  <h3 class="modal-title">Apakah kamu yakin?</h3>
 </div>
-      
+		
 <div class="modal-body">
-   <div class="row">
-   <div class="col-md-3 text-center">
-      <br><br>
-      <img src="images/warning.png" width="80">
-   </div>
-   <div class="col-md-9">
-      <br>Apakah anda yakin akan mengakhiri tes?<br>
-      Semua jawaban yang anda kirimkan tidak bisa diubah lagi setelah mengklik tombol logout.
-
-      <br><br>Centang, kemudian tekan tombol Selesai
-      <input type="hidden" name="tes" value="'.$_GET['tes'].'">
-      <div class="chekbox-selesai"><input type="checkbox" required> Saya yakin dengan semua jawaban yang telah saya pilih. Untuk selanjutnya, semua saya serahkan kepada panitia.</div><br>
-   </div>
-   </div>
+   <p>Pastikan semua soal telah dikerjakan sebelum mengklik selesai. Setelah klik selesai, kamu tidak dapat mengerjakan tes lagi. Yakin akan menyelesaikan tes? </p>
+   <div class="chekbox-selesai"><input type="checkbox" required> Saya yakin akan menyelesaikan tes.</div>
 </div>
-      
+		
 <div class="modal-footer">
-   <div class="row">
-   <div class="col-md-6">
-      <button type="submit" class="btn btn-success btn-block"> SELESAI </button>
-   </div>
-   <div class="col-md-6">
-      <button type="button" class="btn btn-danger btn-block" data-dismiss="modal"> TIDAK </button>
-   </div>
-   </div>
+   <button type="submit" class="btn btn-danger" onclick="return selesai_tes('.$_GET['tes'].')"> Selesai </button>
+   <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal </button>
 </div>
-      
+		
 </form></div></div></div>';
 ?>
-

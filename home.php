@@ -1,4 +1,8 @@
 <?php
+session_start();
+ob_start();
+include "library/config.php";
+
 if( empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
    header('location: login.php');
 }
@@ -16,7 +20,7 @@ if($ttes < 1){
 
 //kalo ada 1 ya lgsg dibawa ke detail tes tsb aja gan. ini buat schematicsnya nanti, pas hari H biar ga bingung milih tesnya kayak kode yg di bawah
 else if($ttes == 1){
-  header('location: ?content=detail&id='.$rtes['id_tes']);
+   echo '<script> show_detail('.$rtes['id_tes'].'); </script>';
 }
 //ini buat warmupnya, dilist ada berapa tes yg aktif. desain seadanya
 else{
@@ -28,13 +32,13 @@ echo '<div class="panel-heading"><h3><b>Daftar Tes</h3></b></div>';
    <table class="table table-striped"><thead>
    <tr>
       <th>No</th>
-      <th>Nama Mapel</th>
       <th>Edisi</th>
       <th>Jml. Soal</th>
       <th>Waktu</th>
+      <th></th>
    </tr></thead><tbody>';
-  
-  $qtes = mysqli_query($mysqli, "SELECT * FROM tes t1, edisites t2 WHERE t1.tanggal='$tgl' AND t1.id_tes=t2.id_tes AND t2.id_edisi='$_SESSION[edisi]' AND t2.aktif='Y'");
+	
+	$qtes = mysqli_query($mysqli, "SELECT * FROM tes t1, edisites t2 WHERE t1.tanggal='$tgl' AND t1.id_tes=t2.id_tes AND t2.id_edisi='$_SESSION[edisi]' AND t2.aktif='Y'");
    $no = 1;
    while($r = mysqli_fetch_array($qtes)){
       
@@ -43,11 +47,11 @@ echo '<div class="panel-heading"><h3><b>Daftar Tes</h3></b></div>';
       while($rku = mysqli_fetch_array($qedisites)){
          $edisites[] = $rku['edisi'];
       }
-    
+		
       echo'<tr>
-        <td>'.$no.'</td>
-        <td>'.implode($edisites, ", ").'</td>
-        <td>'.$r['jml_soal'].'</td>
+         <td>'.$no.'</td>
+         <td>'.implode($edisites, ", ").'</td>
+         <td>'.$r['jml_soal'].'</td>
         <td>'.$r['waktu'].' menit</td>
         <td>';
 
@@ -57,10 +61,10 @@ echo '<div class="panel-heading"><h3><b>Daftar Tes</h3></b></div>';
         $rnilai = mysqli_fetch_array($qnilai);
 
         if($tnilai>0 and $rnilai['nilai'] != "") echo '<a class="btn btn-danger">Sudah Mengerjakan</a>';
-        else echo '<a href="?content=detail&id='.$r['id_tes'].'" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Kerjakan</a>';
+        else echo '<a onclick="show_detail('.$r['id_tes'].')" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Kerjakan</a>';
         echo '</td>
      </tr>';
-   $no++;
+	 $no++;
   }
 
    echo '</tbody></table>';
