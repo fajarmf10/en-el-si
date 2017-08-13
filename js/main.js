@@ -11,15 +11,15 @@ $(function(){
 });
 
 function show_detail(tes){
-   $('#content').load('detail.php?tes='+tes);	
+   $('#content').load('detail.php?tes='+tes);
 }
 
 function show_petunjuk(tes){
-   $('#content').load('petunjuk.php?tes='+tes);		
+   $('#content').load('petunjuk.php?tes='+tes);   
 }
 
 function show_tes(tes){
-   $('#content').load('tes.php?tes='+tes);	
+   $('#content').load('tes.php?tes='+tes);
    return false;
 }
 

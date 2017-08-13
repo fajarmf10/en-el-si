@@ -45,8 +45,14 @@ $tnilai = mysqli_num_rows($qnilai);
 $rnilai = mysqli_fetch_array($qnilai);
 
 if($tnilai>0 and $rnilai['nilai'] != "")  echo '<a class="btn btn-danger disabled"> Sudah mengerjakan </a>';
-else /*dibawa ke petunjuk.php dulu baru dimulai*/ echo '<a class="btn btn-primary" onclick="show_petunjuk('.$_GET['tes'].')">
-<i class="glyphicon glyphicon-log-in"></i> Mulai Mengerjakan</a>';
+elseif ($rnilai['help'] != "Y") {
+   # code...
+   /*dibawa ke petunjuk.php dulu baru dimulai*/ 
+   echo '<a class="btn btn-primary" onclick="show_petunjuk('.$_GET['tes'].')">
+   <i class="glyphicon glyphicon-log-in"></i> Mulai Mengerjakan</a>';
+} //Kalo udah pernah nyentang petunjuk...
+else echo '<a class="btn btn-primary" onclick="show_tes('.$_GET['tes'].')">
+   <i class="glyphicon glyphicon-log-in"></i> Lanjutkan Mengerjakan</a>';
 ?>
 	
    </div>
