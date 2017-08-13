@@ -30,7 +30,7 @@ $jawaban = implode(",", $arr_jawaban);
 //input data ke tabel nilai jika data nilai belum ada
 $qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$_GET[tes]'");
 if(mysqli_num_rows($qnilai) < 1){
-   mysqli_query($mysqli, "INSERT INTO nilai SET id_tim='$_SESSION[id_tim]', id_tes='$_GET[tes]', acak_soal='$acak_soal', jawaban='$jawaban', sisa_waktu='$qwtes[waktu]:00'");
+   mysqli_query($mysqli, "INSERT INTO nilai SET id_tim='$_SESSION[id_tim]', id_tes='$_GET[tes]', acak_soal='$acak_soal', jawaban='$jawaban', sisa_waktu='$qwtes[waktu]:00', help='Y'");
 }
 
 //timer haruse fix seh

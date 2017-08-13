@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2017 at 09:15 AM
+-- Generation Time: Aug 13, 2017 at 07:03 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -74,15 +74,9 @@ CREATE TABLE `nilai` (
   `jawaban` text NOT NULL,
   `sisa_waktu` varchar(10) NOT NULL,
   `jml_benar` int(11) NOT NULL,
-  `nilai` varchar(5) NOT NULL
+  `nilai` varchar(5) NOT NULL,
+  `help` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nilai`
---
-
-INSERT INTO `nilai` (`id_nilai`, `id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`) VALUES
-(8, '201701001', 3, '6,7,5,1,2,8,4', '5,1,0,0,0,0,0', '188:12', 0, '');
 
 -- --------------------------------------------------------
 
@@ -180,7 +174,7 @@ CREATE TABLE `tes` (
 --
 
 INSERT INTO `tes` (`id_tes`, `judul`, `tanggal`, `waktu`, `jml_soal`, `acak_soal`, `acak_jawaban`) VALUES
-(3, 'Schhhhhhh17', '2017-08-10', 190, 150, 'Y', 'Y'),
+(3, 'Schhhhhhh17', '2017-08-13', 190, 150, 'Y', 'Y'),
 (4, 'Warmup dude', '2017-08-04', 129, 123, 'N', 'Y');
 
 --
@@ -236,7 +230,7 @@ ALTER TABLE `edisi`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `soal`
 --
