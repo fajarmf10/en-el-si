@@ -32,8 +32,28 @@ $(function(){
 
 //Ketika tombol nomor soal atau tombol navigasi diklik
 function tampil_soal(no){
-   $('.blok-soal').removeClass('active');	
-   $('.soal-'+no).addClass('active');	
+   sisa = $('#sisa_waktu').val();
+   tes = $('#tes').val();
+
+
+   $.ajax({
+      url: "ajax_tes.php?action=tampil_soal",
+      type: "POST",
+      data: "tes=" + tes + "&sisa_waktu=" + sisa,
+      success: function(data){
+         if(data=="ok"){
+            $('.blok-soal').removeClass('active');
+            $('.soal-'+no).addClass('active');
+         }else{
+            alert(data);
+         }
+      },
+      error: function(){
+         alert('Tidak dapat set waktu!');
+      }
+   });
+
+
 }
 
 //Ketika ragu-ragu dicentang
