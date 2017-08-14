@@ -73,7 +73,7 @@ for($s=0; $s<count($arr_soal); $s++){
    if($rsoal['pilihan_4']!="")$arr_pilihan[] = array("no" => 4, "pilihan" => $rsoal['pilihan_4']);
    if($rsoal['pilihan_5']!="") $arr_pilihan[] = array("no" => 5, "pilihan" => $rsoal['pilihan_5']);
 
-if($qwtes['acak_jawaban']=='Y') shuffle($arr_pilihan);
+   if($qwtes['acak_jawaban']=='Y') shuffle($arr_pilihan);
 
 //Pilihan	
    $arr_huruf = array("A","B","C","D","E");	

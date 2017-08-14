@@ -36,8 +36,16 @@ elseif($_GET['action']=="selesai_tes"){
 	
    mysqli_query($mysqli, "UPDATE nilai SET jml_benar='$jbenar', nilai='$nilai' WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'");
    
-   mysqli_query($mysqli, "UPDATE peserta SET status='login' WHERE id_tim='$_SESSION[id_tim]'");
+   mysqli_query($mysqli, "UPDATE peserta SET status='on' WHERE id_tim='$_SESSION[id_tim]'");
    
    echo "ok";
 }
+
+//Ketiak tamoil soal
+elseif($_GET['action']=="tampil_soal"){
+   mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$_POST[sisa_waktu]' WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'");
+   
+   echo "ok";
+}
+
 ?>
