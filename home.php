@@ -2,6 +2,7 @@
 session_start();
 ob_start();
 include "library/config.php";
+include "library/function_convert.php";
 
 if( empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
    header('location: login.php');
@@ -12,6 +13,71 @@ $tgl = date('Y-m-d');
 $qtes = mysqli_query($mysqli, "SELECT * FROM tes t1, edisites t2 WHERE t1.tanggal='$tgl' AND t1.id_tes=t2.id_tes AND t2.id_edisi='$_SESSION[edisi]' AND t2.aktif='Y'");
 $ttes = mysqli_num_rows($qtes);
 $rtes = mysqli_fetch_array($qtes);
+  $qsession = mysqli_query($mysqli, "SELECT * FROM session WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$rtes[id_tes]'");
+  $hsession = mysqli_fetch_array($qsession);
+  if(mysqli_num_rows($qsession) < 1){
+     //tabel session, record waktu login
+  //dapetin waktu sekarang, waktu login
+  $logintime = date("H:i:s");
+  //bentuk DateTime
+  $logindatetime = new DateTime($logintime);
+     mysqli_query($mysqli, "INSERT INTO session SET id_tim='$_SESSION[id_tim]', id_tes='$rtes[id_tes]', login='$logintime'");
+  }
+  else{
+
+    //dapetin waktu sekarang, waktu login
+  $logintime = date("H:i:s");
+  $logindatetime = new DateTime($logintime);
+    //Update juga tabel session buat nyatet login yang terbaru
+  //mysqli_query($mysqli, "UPDATE session SET login='$logintime' WHERE id_tim='$_SESSION[id_tim]'");
+
+  $qsession = mysqli_query($mysqli, "SELECT * FROM session WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$rtes[id_tes]'");
+  $hsession = mysqli_fetch_array($qsession);
+
+  $initlogin = $hsession['login'];
+  //bentuk DateTime
+  $initlogindatetime = new DateTime($initlogin);
+  $interval = $logindatetime->diff($initlogindatetime);
+  $elapsedtime = $interval->format("%H:%i:%s");
+
+  $tnilai = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'"));
+
+     //bikin DateTime ElapsedTime
+     $et = new DateTime($elapsedtime);
+     
+     //agak panjang
+     $waktu = explode(":", $tnilai['sisa_waktu']);
+
+     /*$jam = hoursminute($waktu[0]);
+     //$menit = $waktu[0]%60;
+     $detik = $waktu[1];
+
+     $hasil = array($jam, $detik);
+     $hasil = implode(":", $hasil);
+
+     $hasil2 = new DateTime($hasil);
+    
+     $waktubaru = $et->diff($hasil2);*/
+      
+     $durasiawal = timeseconds($waktu[0],$waktu[1]);
+     
+     $elapsedtimearr = explode(":", $elapsedtime);
+     $durasikurang = dateseconds($elapsedtimearr[0],$elapsedtimearr[1],$elapsedtimearr[2]);
+
+     $waktubaru = 11400 - $durasikurang;
+     if ($waktubaru<0){
+      $waktubaru=0;
+     }
+     $hasilakhir = secondshour($waktubaru);
+
+     //Sisa waktu yang baru
+     //$hasilnya = $waktubaru->format("%H:%i:%s");
+
+    // $hasilarray = explode(":", $hasilnya);
+    // $hasilbener = minutehours($hasilarray[0],$hasilarray[1],$hasilarray[2]);
+     //Langsung dimasukin ke tabel
+     mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
+  }
 
 //kalo ga ada tes yg aktif hari ini
 if($ttes < 1){
@@ -19,6 +85,22 @@ if($ttes < 1){
 }
 
 //kalo ada 1 ya lgsg dibawa ke detail tes tsb aja gan. ini buat schematicsnya nanti, pas hari H biar ga bingung milih tesnya kayak kode yg di bawah
+else if($ttes == 1){/*
+    echo $logintime;
+    echo '<br>Init Login: ';
+    echo $initlogin;
+    echo '<br>Beda: ';
+    echo $elapsedtime; 
+    echo '<br>';
+    echo $durasikurang;
+    echo '<br>Sisa waktu awal: ';
+    echo $tnilai['sisa_waktu']; 
+    echo '<br>';
+    echo $durasiawal;
+    echo '<br>Hasil ngurang: ';
+    echo $waktubaru;
+    echo '<br>Menit detik: ';
+    echo $hasilakhir;*/
 else if($ttes == 1){
    echo '<script> show_detail('.$rtes['id_tes'].'); </script>';
 }
@@ -71,4 +153,8 @@ echo '<div class="panel-heading"><h3><b>Daftar Tes</h3></b></div>';
    
  echo '</div></div></div>';
 }
+
+
+
+
 ?>
