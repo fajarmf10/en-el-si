@@ -10,7 +10,6 @@ if(empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
 $edisi = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM edisi WHERE id_edisi='$_SESSION[edisi]'"));
 $tes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
 
-
 ?>
 
 <?

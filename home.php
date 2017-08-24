@@ -101,6 +101,7 @@ else if($ttes == 1){/*
     echo $waktubaru;
     echo '<br>Menit detik: ';
     echo $hasilakhir;*/
+else if($ttes == 1){
    echo '<script> show_detail('.$rtes['id_tes'].'); </script>';
 }
 //ini buat warmupnya, dilist ada berapa tes yg aktif. desain seadanya
