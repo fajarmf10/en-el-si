@@ -16,7 +16,6 @@ Jangan lupa setting-setting tesnya dulu sebelum pake.
 Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
 - Desain
 - [FIXED][thx to Hendry Wiranto @hendrywiranto] Timer kalo logout balik lagi ke waktu yang tersimpan setelah menjawab soal
-- Timer kalo logout balik lagi ke waktu yang tersimpan setelah menjawab soal
 	(solusi yg terpikirkan : tiap kali pindah soal, waktu_sisa disimpan, untuk yg logout belum tau/kepikiran)
 - Timer ketika 2x klik home jadi double/triple/quadruple time cepetnya
 	(solusi yg terpikirkan : daripada timer js diload di function(), countdown disimpan di session)
