@@ -3,12 +3,13 @@ session_start();
 include "library/config.php";
 include "library/function_convert.php";
 
-if(empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
-   header('location: login.php');
+if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
+    header('location: login.php');
 }
 
 $edisi = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM edisi WHERE id_edisi='$_SESSION[edisi]'"));
-$tes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
+$tes   = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
+
 
 ?>
 
@@ -40,22 +41,24 @@ $tes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes=
 <div class="row">
    <div class="col-md-12">
 
-<?php	
+<?php
 //Kalo udah tes, gabisa tes lagi
 $qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$_GET[tes]' AND id_tim='$_SESSION[id_tim]'");
 $tnilai = mysqli_num_rows($qnilai);
 $rnilai = mysqli_fetch_array($qnilai);
 
-if($tnilai>0 and $rnilai['nilai'] != "")  echo '<a class="btn btn-danger disabled"> Sudah mengerjakan </a>';
+if ($tnilai > 0 and $rnilai['nilai'] != "")
+    echo '<a class="btn btn-danger disabled"> Sudah mengerjakan </a>';
 elseif ($rnilai['help'] != "Y") {
-   # code...
-   /*dibawa ke petunjuk.php dulu baru dimulai*/ 
-   echo '<a class="btn btn-primary" onclick="show_petunjuk('.$_GET['tes'].')">
+    # code...
+    /*dibawa ke petunjuk.php dulu baru dimulai*/
+    echo '<a class="btn btn-primary" onclick="show_petunjuk(' . $_GET['tes'] . ')">
    <i class="glyphicon glyphicon-log-in"></i> Mulai Mengerjakan</a>';
 } //Kalo udah pernah nyentang petunjuk...
-else echo '<a class="btn btn-primary" onclick="show_tes('.$_GET['tes'].')">
+else
+    echo '<a class="btn btn-primary" onclick="show_tes(' . $_GET['tes'] . ')">
    <i class="glyphicon glyphicon-log-in"></i> Lanjutkan Mengerjakan</a>';
 ?>
-	
+   
    </div>
 </div><br/>

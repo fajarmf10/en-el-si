@@ -1,6 +1,6 @@
 <?php
-if( empty($_SESSION['id_tim']) or empty($_SESSION['password']) ){
-   header('location: login.php');
+if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
+    header('location: login.php');
 }
 ?>
 

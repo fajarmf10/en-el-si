@@ -30,8 +30,8 @@ $(function(){
             url : "checker.php",
             data : $(this).serialize(),
             success : function(data){
-               if(data == "ok") window.location = "index.php";	
-               else $('.alert').fadeIn().html(data);	
+               if(data == "ok") window.location = "index.php";
+               else $('.alert').fadeIn().html(data);
             }
          });
       }

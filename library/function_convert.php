@@ -10,10 +10,10 @@ function hoursminute($time, $format = '%02d:%02d') {
 
 function minutehours($jam, $menit, $detik) {
     if ($jam>1){
-    	$menitku=$jam*60;
+        $menitku=$jam*60;
     }
     else {
-    	$menitku=0;
+        $menitku=0;
     }
     $hasil = '%02d:%02d';
     return sprintf($hasil, $menit+$menitku, $detik);
