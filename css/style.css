@@ -1,29 +1,33 @@
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-   background: #888;
+   background: #595959;
    color: #eee;
-   transition: 1s ease;
+   transition: 0.8s ease;
 }
 body{
-   background: #eee;
+   background: url('../images/bg-nlc.png') ;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
 }
 h3.page-header{
    margin-top: 0;
 }
 #content{
    font-size: 18px;
-   background: #fff;
+   background: #EEEEEE;
    margin-top: 60px;
-   min-height: 80%;
-   padding: 20px;
+   max-height: 85%;
+   height: 700px;
+   padding: 10px;
    border: 1px solid #ccc;
    box-shadow: 0 0 3px #ccc;
    overflow: hidden;
 }
 footer{
    padding: 10px 0;
-   color: #888;
+   color: #FFFFFF;
 }
+
 
 
 /*------------------ HALAMAN TES ---------------- */
@@ -35,19 +39,27 @@ footer{
 .blok-soal.active{
    display: block;
 }
-.nomor, .huruf{
+.nomor{
+   color: #000;
    display: block;
    width: 35px;
-   padding: 5px 0;
+   padding: 3px 0;
+   padding-top: 1px;
    text-align: center;
-   border: 1px solid #ccc;
+   border: 0px solid #313638;
    border-radius: 50%;
    cursor: pointer;
 }
-.nomor{
-   background: blue;
-   color: #fff;
+.huruf{
+   display: block;
+   width: 35px;
+   padding: 3px 0;
+   text-align: center;
+   border: 0px solid #313638;
+   border-radius: 50%;
+   cursor: pointer;
 }
+/*
 .huruf-A{
    background: url('../images/A.png') no-repeat;
 }
@@ -64,31 +76,37 @@ footer{
    background: url('../images/E.png') no-repeat;
 }
 .huruf-pilihan{
+   padding-top: 1px;
+   text-align: center;
    width: 28px;
    height: 28px;
    cursor: pointer;
    display: inline-block;
-}
+}*/
 /*Menyembunyikan input radio*/
 input[type=radio]{
    display: none;
 }
 input[type=radio]:checked ~ .huruf-pilihan{
-   background: url('../images/pilih.png') no-repeat;
+   background-color: #40BCD8;
 }
 .pilihan{
-   margin-bottom: 20px;
+   margin-bottom: 15px;
+   max-width: 90%;
+   margin-left: 50px;
+   border: 1px solid #ccc;
 }
 .pilihan .teks{
-   padding-top: 10px;
+   padding-top: 3px;
 }
 .konten-ujian, .nomor-ujian{
-   border: 1px solid #eee;
+   border: 1px solid;
+   border-color: #E0DFD5;
    padding: 10px;
    height: 100%;  
 }
 .blok-soal .box{
-   height: 400px;
+   height: 480px;
    overflow-y: auto;
    overflow-x: hidden;
 }
@@ -96,7 +114,10 @@ input[type=radio]:checked ~ .huruf-pilihan{
    width: 20%;
    display: inline-block;
 }
-.blok-nomor .box{
+.blok-nomor{
+   padding: 0px;
+}
+.box{
    padding: 5px;
 }
 .tombol-nomor{
@@ -104,15 +125,30 @@ input[type=radio]:checked ~ .huruf-pilihan{
    width: 100%;
    padding: 10px 0;
    text-align: center;
-   background: red;
-   color: #fff;
-   border: 2px solid #000;
+   background: #E64A19;
+   color: #FFF;
+   border: 0px solid;
    cursor: pointer;
+   border-radius: 10px;
+}
+a.tombol-nomor:hover{
+   background: #D84315;
+   transform: scale(1.15, 1.15);
+   -moz-transform: scale(1.15, 1.15);
+   -ms-transform: scale(1.15, 1.15);
+   -webkit-transform: scale(1.15, 1.15);
+   -o-transform: scale(1.15, 1.15);
+}
+a.tombol-nomor.green:hover{
+   background-color: #2E7D32;
+}
+a.tombol-nomor.yellow:hover{
+   background-color: #FBC02D;
 }
 .tombol-nomor.green{
-   background: green;
+   background: #388E3C;
 }
 .tombol-nomor.yellow{
-   background: yellow;
+   background: #FDD835;
    color: #000;
 }

@@ -12,6 +12,7 @@
    <div class="panel-footer">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
+			<a href="index.php" class="btn btn-success btn-block">CANCEL</a>
 			<a href="logout.php" class="btn btn-success btn-block">LOGOUT</a>
 		</div>
 		</div>

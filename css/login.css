@@ -1,5 +1,7 @@
 body{ 
-   background-color: black;
+   background: url('../images/bg-nlc.png') ;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
 }
 .container-fluid{
    margin-top: 150px;

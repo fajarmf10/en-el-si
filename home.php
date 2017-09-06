@@ -39,43 +39,31 @@ if (mysqli_num_rows($qsession) < 1) {
     $interval          = $logindatetime->diff($initlogindatetime);
     $elapsedtime       = $interval->format("%H:%i:%s");
     
-    $tnilai = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'"));
-    
-    //bikin DateTime ElapsedTime
-    $et = new DateTime($elapsedtime);
-    
-    //agak panjang
-    $waktu = explode(":", $tnilai['sisa_waktu']);
-    
-    /*$jam = hoursminute($waktu[0]);
-    //$menit = $waktu[0]%60;
-    $detik = $waktu[1];
-    
-    $hasil = array($jam, $detik);
-    $hasil = implode(":", $hasil);
-    
-    $hasil2 = new DateTime($hasil);
-    
-    $waktubaru = $et->diff($hasil2);*/
-    
-    $durasiawal = timeseconds($waktu[0], $waktu[1]);
-    
-    $elapsedtimearr = explode(":", $elapsedtime);
-    $durasikurang   = dateseconds($elapsedtimearr[0], $elapsedtimearr[1], $elapsedtimearr[2]);
-    
-    $waktubaru = 11400 - $durasikurang;
-    if ($waktubaru < 0) {
-        $waktubaru = 0;
+    $qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
+    $rnilai = mysqli_num_rows($qnilai);
+    $tnilai = mysqli_fetch_array($qnilai);
+
+    if ($rnilai>0){
+        //bikin DateTime ElapsedTime
+        $et = new DateTime($elapsedtime);
+        
+        //agak panjang
+        $waktu = explode(":", $tnilai['sisa_waktu']);
+        
+        $durasiawal = timeseconds($waktu[0], $waktu[1]);
+        
+        $elapsedtimearr = explode(":", $elapsedtime);
+        $durasikurang   = dateseconds($elapsedtimearr[0], $elapsedtimearr[1], $elapsedtimearr[2]);
+        
+        $waktubaru = $rtes['waktu']*60 - $durasikurang;
+        if ($waktubaru < 0) {
+            $waktubaru = 0;
+        }
+        $hasilakhir = secondshour($waktubaru);
+
+        mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
     }
-    $hasilakhir = secondshour($waktubaru);
     
-    //Sisa waktu yang baru
-    //$hasilnya = $waktubaru->format("%H:%i:%s");
-    
-    // $hasilarray = explode(":", $hasilnya);
-    // $hasilbener = minutehours($hasilarray[0],$hasilarray[1],$hasilarray[2]);
-    //Langsung dimasukin ke tabel
-    mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
 }
 
 //kalo ga ada tes yg aktif hari ini

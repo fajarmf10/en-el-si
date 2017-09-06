@@ -18,24 +18,24 @@ $tes   = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_te
 ?>
 <h3 class="page-header"><i class="glyphicon glyphicon-user"></i> Selamat Datang di <?= $edisi['edisi'] ?></h3>
 <div class="row">
-   <div class="col-md-3">ID Tim</div>
-   <div class="col-md-9">: <b><?= $_SESSION['id_tim']; ?> </b> </div>
+   <div class="col-md-3 col-xs-4">ID Tim</div>
+   <div class="col-md-9 col-xs-8">: <b><?= $_SESSION['id_tim']; ?> </b> </div>
 </div><br/>
 <div class="row">
-   <div class="col-md-3">Nama Tim</div>
-   <div class="col-md-9">: <b><?= $_SESSION['namatim']; ?> </b></div>
+   <div class="col-md-3 col-xs-4">Nama Tim</div>
+   <div class="col-md-9 col-xs-8">: <b><?= $_SESSION['namatim']; ?> </b></div>
 </div><br/>
 <div class="row">
-   <div class="col-md-3">Edisi</div>
-   <div class="col-md-9">: <b><?= $edisi['edisi']; ?></b></div>
+   <div class="col-md-3 col-xs-4">Edisi</div>
+   <div class="col-md-9 col-xs-8">: <b><?= $edisi['edisi']; ?></b></div>
 </div><br/>
 <div class="row">
-   <div class="col-md-3">Jml. Soal</div>
-   <div class="col-md-9">: <b><?= $tes['jml_soal']; ?></b></div>
+   <div class="col-md-3 col-xs-4">Jml. Soal</div>
+   <div class="col-md-9 col-xs-8">: <b><?= $tes['jml_soal']; ?></b></div>
 </div><br/>
 <div class="row">
-   <div class="col-md-3">Waktu Mengerjakan</div>
-   <div class="col-md-9">: <b><?= $tes['waktu']; ?> menit</b></div>
+   <div class="col-md-3 col-xs-4">Waktu Mengerjakan</div>
+   <div class="col-md-9 col-xs-8">: <b><?= $tes['waktu']; ?> menit</b></div>
 </div><br/>
 
 <div class="row">

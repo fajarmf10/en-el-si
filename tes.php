@@ -65,7 +65,7 @@ for ($s = 0; $s < count($arr_soal); $s++) {
     echo '<div class="blok-soal soal-' . $no . ' ' . $active . '">
 <div class="box">
 <div class="row">
-   <div class="col-xs-1"><div class="nomor">' . $no . '</div></div>
+   <div class="col-xs-1"><div class="nomor">' . $no . '.</div></div>
    <div class="col-xs-11"><div class="soal">' . $soal . '</div> </div>
 </div>';
     
@@ -113,10 +113,10 @@ for ($s = 0; $s < count($arr_soal); $s++) {
         $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
         $pilihan = str_replace("../media", "media", $arr_pilihan[$i]['pilihan']);
         echo '<div class="row pilihan">
-   <div class="col-xs-1 col-xs-offset-1">
-   <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="huruf-' . $no . '-' . $i . '" ' . $checked . '>
-   <label for="huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
-</div>
+   <div class="col-xs-2">
+     <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="huruf-' . $no . '-' . $i . '" ' . $checked . '>
+     <label for="huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
+    </div>
 <div class="col-xs-10">
    <div class="teks">' . $pilihan . ' </div> 
 </div>
