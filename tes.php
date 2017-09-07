@@ -48,7 +48,7 @@ echo '<h3 class="page-header"><b>' . $qwtes['judul'] . ' <span class="pull-right
 <input type="hidden" id="sisa_waktu">';
 
 echo '<div class="row">
-   <div class="col-md-8"><div class="konten-ujian">';
+   <div class="col-md-10"><div class="konten-ujian">';
 
 //Output soal dari db
 $arr_soal    = explode(",", $rnilai['acak_soal']);
@@ -143,7 +143,7 @@ for ($s = 0; $s < count($arr_soal); $s++) {
 }
 
 echo '</div></div>
-   <div class="col-md-4">
+   <div class="col-md-2">
       <div class="text-center">DAFTAR SOAL</div>
    <div class="nomor-ujian"><div class="blok">';
 

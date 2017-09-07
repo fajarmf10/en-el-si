@@ -15,10 +15,10 @@ h3.page-header{
 #content{
    font-size: 18px;
    background: #EEEEEE;
-   margin-top: 60px;
+   margin-top: 62px;
    max-height: 85%;
-   height: 700px;
-   padding: 10px;
+   height: 720px;
+   padding: 20px;
    border: 1px solid #ccc;
    box-shadow: 0 0 3px #ccc;
    overflow: hidden;
@@ -31,7 +31,6 @@ footer{
 
 
 /*------------------ HALAMAN TES ---------------- */
-
 
 .blok-soal{
    display: none;
@@ -99,19 +98,29 @@ input[type=radio]:checked ~ .huruf-pilihan{
 .pilihan .teks{
    padding-top: 3px;
 }
-.konten-ujian, .nomor-ujian{
+.konten-ujian{
+   display: block;
    border: 1px solid;
    border-color: #E0DFD5;
    padding: 10px;
-   height: 100%;  
+   height: 90%;  
+}
+.nomor-ujian{
+   border: 1px solid;
+   border-color: #E0DFD5;
+   padding: 10px;
+   height: 86%;  
+   overflow-x: hidden;
+   overflow-y: auto;
 }
 .blok-soal .box{
-   height: 480px;
-   overflow-y: auto;
+   height: 85%;
    overflow-x: hidden;
+   overflow-y: auto;
 }
 .blok-nomor{
    width: 20%;
+   height: 5%;
    display: inline-block;
 }
 .blok-nomor{
@@ -120,24 +129,31 @@ input[type=radio]:checked ~ .huruf-pilihan{
 .box{
    padding: 5px;
 }
+.blok .blok-nomor .box{
+   padding: 0px;
+}
 .tombol-nomor{
    display: block;
-   width: 100%;
-   padding: 10px 0;
+   width: 90%;
+   height: 90%;
+   padding-top: 2px;
    text-align: center;
    background: #E64A19;
    color: #FFF;
    border: 0px solid;
    cursor: pointer;
    border-radius: 10px;
+   font-size: 12px;
 }
 a.tombol-nomor:hover{
    background: #D84315;
-   transform: scale(1.15, 1.15);
-   -moz-transform: scale(1.15, 1.15);
-   -ms-transform: scale(1.15, 1.15);
-   -webkit-transform: scale(1.15, 1.15);
-   -o-transform: scale(1.15, 1.15);
+   color: white;
+   text-decoration: none;
+   transform: scale(1.75, 1.75);
+   -moz-transform: scale(1.75, 1.75);
+   -ms-transform: scale(1.75, 1.75);
+   -webkit-transform: scale(1.75, 1.75);
+   -o-transform: scale(1.75, 1.75);
 }
 a.tombol-nomor.green:hover{
    background-color: #2E7D32;
