@@ -14,7 +14,7 @@ Kalo ada error, coba bikin folder **media/thumbs/** dan **media/source/**
 Jangan lupa setting-setting tesnya dulu sebelum pake.
 
 Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
-- Desain [WIP]
+- [WIP] Desain
 - [FIXED][thx to Hendry Wiranto @hendrywiranto] Timer kalo logout balik lagi ke waktu yang tersimpan setelah menjawab soal
 	(solusi yg terpikirkan : tiap kali pindah soal, waktu_sisa disimpan, untuk yg logout belum tau/kepikiran)
 - [FIXED] Timer ketika 2x klik home jadi double/triple/quadruple time cepetnya
@@ -22,7 +22,9 @@ Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
 - [FIXED] Petunjuk harus terus-menerus dicentang dan dilewatin
 	(solusi yg terpikirkan : ubah tabel, kasih flag di tabel yg nandain kalo user udah pernah centang petunjuk)
 - Waktu serentak
-- Acak soal berantai
+- Acak soal berantai (tiap 5 soal diacak)
+- Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
+- Reset password peserta lewat panel admin
 - Some shits yg belum bisa difixin karena sibuk cari jodoh
 
 
