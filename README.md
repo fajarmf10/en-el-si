@@ -1,7 +1,7 @@
 En-El-Si
 -------------
 
-En-El-Si is another product for your body. It contains a lot of vitamins and nutriens. You shouldn't consume it frequently, because it could damage your immune system.
+En-El-Si is a part of an annual event called Schematics.
 
 - Login admin : root/panel/
   - Admin User : fajarmf:stupidmonkey
@@ -13,7 +13,9 @@ Kalo ada error, coba bikin folder **media/thumbs/** dan **media/source/**
 
 Jangan lupa setting-setting tesnya dulu sebelum pake.
 
-Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
+Mau dibenerin lagi. Untuk sementara segini dulu.
+
+BUGS and PROBLEMS:
 - [WIP] Desain
 - [FIXED][thx to Hendry Wiranto @hendrywiranto] Timer kalo logout balik lagi ke waktu yang tersimpan setelah menjawab soal
 	(solusi yg terpikirkan : tiap kali pindah soal, waktu_sisa disimpan, untuk yg logout belum tau/kepikiran)
@@ -25,7 +27,7 @@ Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
 - Acak soal berantai (tiap 5 soal diacak)
 - [WIP 95%] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
 - [FIXED] Reset password peserta lewat panel admin -> Menjadi ganti password lewat panel sebagai admin
-- Some shits yg belum bisa difixin karena sibuk cari jodoh
+- Some sh%ts yg belum bisa difixin karena sibuk cari jodoh
 
 
 Copyright (C) 2017 Schematics ITS [schematics.its.ac.id][@sosispanggang, @znaznazna, @harkadious, and @hendrywiranto]

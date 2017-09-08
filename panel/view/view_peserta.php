@@ -33,7 +33,7 @@ open_form("modal_peserta", "return save_data()");
    }
    create_combobox("Edisi", "edisi", $list, 4, "", "required");
    echo '<div class="form-group">
-      <label for="password" class="col-sm-2 control-label"> Pasw </label>
+      <label for="password" class="col-sm-2 control-label"> Password </label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="password" name="password">
       </div>
