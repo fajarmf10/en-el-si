@@ -36,6 +36,28 @@ function ragu_ragu(no){
    }
 }
 
+function resetjawaban(index){
+   tes = $('#tes').val();
+   sisa_waktu = $('#sisa_waktu').val();
+   $.ajax({
+      url: "ajax_tes.php?action=resetjawaban",
+      type: "POST",
+      data: "tes=" + tes + "&index=" + index + "&sisa_waktu=" + sisa_waktu + "&jawab=0",
+      success: function(data){
+         if(data=="ok"){
+            no = index+1;
+            $('.tombol-'+no).removeClass("green");
+            $('.huruf-pilihan').prop('checked', false);
+         }else{
+            alert(data);
+         }
+      },
+      error: function(){
+         alert('Tidak dapat mengirim jawaban!');
+      }
+   });
+}
+
 //Ketika tes selesai
 function selesai(){
    $('#modal-selesai').modal({

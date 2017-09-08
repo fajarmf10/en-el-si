@@ -20,6 +20,21 @@ if($_GET['action']=="kirim_jawaban"){
     echo "ok";
 }
 
+
+//Reset jawaban
+if($_GET['action']=="resetjawaban"){
+    $rnilai = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'"));
+    $jawaban = explode(",", $rnilai['jawaban']);
+    $index = $_POST['index'];
+    $jawaban[$index] = $_POST['jawab'];
+
+    $jawabanfix = implode(",", $jawaban);
+    
+    mysqli_query($mysqli, "UPDATE nilai SET jawaban='$jawabanfix', sisa_waktu='$_POST[sisa_waktu]' WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'");
+
+    echo "ok";
+}
+
 //Ketiak selesai tes
 elseif($_GET['action']=="selesai_tes"){
     $rnilai = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'"));

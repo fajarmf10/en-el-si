@@ -129,8 +129,11 @@ for ($s = 0; $s < count($arr_soal); $s++) {
     $sebelumnya = $no - 1;
     if ($no != 1)
         echo '<a class="btn btn-primary btn-block" onclick="tampil_soal(' . $sebelumnya . ')">Soal Sebelumnya</a>';
-    echo '</div>
+/*    echo '</div>
    <div class="col-md-4 col-md-offset-1"><label class="btn btn-warning btn-block"> <input type="checkbox" autocomplete="off" onchange="ragu_ragu(' . $no . ')"> Ragu-ragu</label></div>   
+<div class="col-md-3 col-md-offset-1">';*/
+    echo '</div>
+   <div class="col-md-4 col-md-offset-1"><a class="btn btn-warning btn-block" onclick="resetjawaban('. $s .')"> Reset </a></div>   
 <div class="col-md-3 col-md-offset-1">';
     
     $berikutnya = $no + 1;

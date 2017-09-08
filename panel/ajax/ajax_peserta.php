@@ -13,7 +13,7 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['id_tim'];
       $row[] = $r['nama'];
-      $row[] = md5($r['id_tim']);
+      $row[] = $r['password'];
       $row[] = $edisi['edisi'];
       $row[] = create_action($r['id_tim']);
       $data[] = $row;
@@ -47,8 +47,10 @@ elseif($_GET['action'] == "insert"){
 }
 
 elseif($_GET['action'] == "update"){
+   $password = md5($_POST['password']);
    mysqli_query($mysqli, "UPDATE peserta SET
       nama = '$_POST[nama]',
+      password = '$password',
       id_edisi = '$_POST[edisi]'
       WHERE id_tim='$_POST[id_tim]'");
    echo "ok";

@@ -31,6 +31,7 @@ function form_edit(id){
          $('#id_tim').val(data.id_tim).attr('readonly',true);
          $('#nama').val(data.nama);
          $('#edisi').val(data.id_edisi);
+         $('#password').val(data.password);
       },
       error : function(){
          alert("Tidak dapat menampilkan data!");
@@ -39,7 +40,7 @@ function form_edit(id){
 }
 
 function save_data(){
-   if(save_method == "add") 
+   if(save_method == "add")
       url = "ajax/ajax_peserta.php?action=insert";
    else url = "ajax/ajax_peserta.php?action=update";
    $.ajax({

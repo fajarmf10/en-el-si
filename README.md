@@ -23,8 +23,8 @@ Mau aku benerin lagi. Untuk sementara segini dulu. Yang kurang :
 	(solusi yg terpikirkan : ubah tabel, kasih flag di tabel yg nandain kalo user udah pernah centang petunjuk)
 - Waktu serentak
 - Acak soal berantai (tiap 5 soal diacak)
-- Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
-- Reset password peserta lewat panel admin
+- [WIP 95%] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
+- [FIXED] Reset password peserta lewat panel admin -> Menjadi ganti password lewat panel sebagai admin
 - Some shits yg belum bisa difixin karena sibuk cari jodoh
 
 

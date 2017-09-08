@@ -25,13 +25,21 @@ open_form("modal_peserta", "return save_data()");
    </div> </div>';
 
    create_textbox("Nama Tim", "nama", "text", 6, "", "required");
-	
+
    $qedisi = mysqli_query($mysqli, "SELECT * FROM edisi");
    $list = array();
    while($rk = mysqli_fetch_array($qedisi)){
       $list[] = array($rk['id_edisi'], $rk['edisi']);
    }
    create_combobox("Edisi", "edisi", $list, 4, "", "required");
+   echo '<div class="form-group">
+      <label for="password" class="col-sm-2 control-label"> Pasw </label>
+      <div class="col-sm-6">
+         <input type="text" class="form-control" id="password" name="password">
+      </div>
+   </div>';
+
+
 close_form();
 
 open_form("modal_import", "return import_data()");
