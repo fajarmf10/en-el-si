@@ -15,7 +15,7 @@ $ttes     = mysqli_num_rows($qtes);
 $rtes     = mysqli_fetch_array($qtes);
 $qsession = mysqli_query($mysqli, "SELECT * FROM session WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$rtes[id_tes]'");
 $hsession = mysqli_fetch_array($qsession);
-if (mysqli_num_rows($qsession) < 1) {
+if (mysqli_num_rows($qsession) < 1 and $rtes['id_tes'] != "0") {
     //tabel session, record waktu login
     //dapetin waktu sekarang, waktu login
     $logintime     = date("H:i:s");
@@ -57,7 +57,7 @@ if (mysqli_num_rows($qsession) < 1) {
         
         $waktubaru = $rtes['waktu']*60 - $durasikurang;
         if ($waktubaru < 0) {
-            $waktubaru = 0;
+            $waktubaru = 1;
         }
         $hasilakhir = secondshour($waktubaru);
 

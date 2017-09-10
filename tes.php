@@ -12,21 +12,37 @@ if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
 mysqli_query($mysqli, "UPDATE peserta SET status='mengerjakan' WHERE id_tim='$_SESSION[id_tim]'");
 
 $qwtes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
-if ($qwtes['acak_soal'] == 'Y')
-    $qsoal = mysqli_query($mysqli, "SELECT * FROM soal WHERE id_tes='$_GET[tes]' ORDER BY rand() LIMIT $qwtes[jml_soal]");
-else
-    $qsoal = mysqli_query($mysqli, "SELECT * FROM soal WHERE id_tes='$_GET[tes]' ORDER BY urut, id_soal LIMIT $qwtes[jml_soal]");
+$jumsoal = $qwtes['jml_soal']/5;
+$numbers = range(1, $jumsoal);
+shuffle($numbers);
+$arr_soal    = array();
+$arr_jawaban = array();
+
+if ($qwtes['acak_soal'] == 'Y'){
+  for ($k=0;$k<$jumsoal;$k++){
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' AND id_kelompok=$numbers[$k] LIMIT $qwtes[jml_soal]");
+    $arr_soal_kelompok = array();
+    $arr_jawaban_kelompok = array();
+    while ($rsoal = mysqli_fetch_array($qsoal)) {
+      $arr_soal_kelompok[]    = $rsoal['id_soal'];
+      $arr_jawaban_kelompok[] = 0;
+    }
+    $arr_soal = array_merge($arr_soal, $arr_soal_kelompok);
+    $arr_jawaban = array_merge($arr_jawaban, $arr_jawaban_kelompok);
+  }
+}
+else{
+    
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY urut, id_soal LIMIT $qwtes[jml_soal]");
+    while ($rsoal = mysqli_fetch_array($qsoal)) {
+      $arr_soal[]    = $rsoal['id_soal'];
+      $arr_jawaban[] = 0;
+    }  
+}
 
 //kalo gaada soal
 if (mysqli_num_rows($qsoal) == 0)
     die('<div class="alert alert-warning">Belum ada soal pada tes ini. Silahkan menghubungi panitia!</div>');
-
-$arr_soal    = array();
-$arr_jawaban = array();
-while ($rsoal = mysqli_fetch_array($qsoal)) {
-    $arr_soal[]    = $rsoal['id_soal'];
-    $arr_jawaban[] = 0;
-}
 
 $acak_soal = implode(",", $arr_soal);
 $jawaban   = implode(",", $arr_jawaban);

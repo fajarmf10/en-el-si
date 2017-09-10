@@ -24,10 +24,10 @@ BUGS and PROBLEMS:
 - [FIXED] Petunjuk harus terus-menerus dicentang dan dilewatin
 	(solusi yg terpikirkan : ubah tabel, kasih flag di tabel yg nandain kalo user udah pernah centang petunjuk)
 - Waktu serentak
-- Acak soal berantai (tiap 5 soal diacak)
+- [FIXED] Acak soal berantai (tiap 5 soal diacak) - TOLONG DICEK JAR
 - [WIP 95%] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
 - [FIXED] Reset password peserta lewat panel admin -> Menjadi ganti password lewat panel sebagai admin
-- Some sh%ts yg belum bisa difixin karena sibuk cari jodoh
+- Some sh%ts yg belum bisa difixin karena sibuk cari jodoh, mantanmu gak kangen kon kok jar hehe
 
 
 Copyright (C) 2017 Schematics ITS [schematics.its.ac.id][@sosispanggang, @znaznazna, @harkadious, and @hendrywiranto]
