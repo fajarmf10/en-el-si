@@ -50,6 +50,14 @@ elseif($_GET['action'] == "insert"){
       pilihan_4 = '$pil_4',
       pilihan_5 = '$pil_5',
       kunci = '$_POST[kunci]'");	
+   mysqli_query($mysqli, "UPDATE soal SET id_kelompok = CEIL (id_soal/5) WHERE id_tes = '$_GET[tes]' AND
+      soal = '$soal' AND
+      pilihan_1 = '$pil_1' AND
+      pilihan_2 = '$pil_2' AND
+      pilihan_3 = '$pil_3' AND
+      pilihan_4 = '$pil_4' AND
+      pilihan_5 = '$pil_5' AND
+      kunci = '$_POST[kunci]'"); 
    echo "ok";
 }
 
