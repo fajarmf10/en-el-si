@@ -89,11 +89,14 @@ input[type=radio]{
 input[type=radio]:checked ~ .huruf-pilihan{
    background-color: #40BCD8;
 }
+.resetcok{
+   background-color: transparent;
+}
 .pilihan{
    margin-bottom: 15px;
    max-width: 90%;
    margin-left: 50px;
-   border: 1px solid #ccc;
+   
 }
 .pilihan .teks{
    padding-top: 3px;

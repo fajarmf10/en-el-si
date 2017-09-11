@@ -126,11 +126,11 @@ for ($s = 0; $s < count($arr_soal); $s++) {
     );
     $arr_class[$no] = ($arr_jawaban[$s] != 0) ? "green" : "";
     for ($i = 0; $i < count($arr_pilihan); $i++) {
-        $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
+//        $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
         $pilihan = str_replace("../media", "media", $arr_pilihan[$i]['pilihan']);
         echo '<div class="row pilihan">
    <div class="col-xs-2">
-     <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="huruf-' . $no . '-' . $i . '" ' . $checked . '>
+     <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="huruf-' . $no . '-' . $i . '">
      <label for="huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
     </div>
 <div class="col-xs-10">
