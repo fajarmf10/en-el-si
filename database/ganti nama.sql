@@ -60,12 +60,12 @@ CREATE TABLE `nilai` (
   `nilai` varchar(5) NOT NULL,
   `help` char(2) NOT NULL,
   PRIMARY KEY (`id_nilai`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 /*Data for the table `nilai` */
 
 insert  into `nilai`(`id_nilai`,`id_tim`,`id_tes`,`acak_soal`,`jawaban`,`sisa_waktu`,`jml_benar`,`nilai`,`help`) values 
-(44,'201701001',3,'91,92,93,94,95,96,97,98,99,100,11,12,13,14,15,51,52,53,54,55,1,2,3,4,5,66,67,68,69,70,81,82,83,84,85,36,37,38,39,40,56,57,58,59,60,86,87,88,89,90,31,32,33,34,35,26,27,28,29,30,41,42,43,44,45,6,7,8,9,10,76,77,78,79,80,46,47,48,49,50,71,72,73,74,75,61,62,63,64,65,21,22,23,24,25,16,17,18,19,20','0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','188:52',0,'','Y');
+(45,'201701001',3,'21,22,23,24,25,71,72,73,74,75,86,87,88,89,90,91,92,93,94,95,26,27,28,29,30,11,12,13,14,15,16,17,18,19,20,76,77,78,79,80,101,102,103,104,105,1,2,3,4,5,31,32,33,34,35,61,62,63,64,65,6,7,8,9,10,66,67,68,69,70,41,42,43,44,45,56,57,58,59,60,81,82,83,84,85,46,47,48,49,50,36,37,38,39,40,106,107,108,109,110,96,97,98,99,100,51,52,53,54,55','0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','126:52',0,'','Y');
 
 /*Table structure for table `panel` */
 
@@ -120,7 +120,7 @@ CREATE TABLE `session` (
 /*Data for the table `session` */
 
 insert  into `session`(`id_tim`,`id_tes`,`logout`,`login`) values 
-('201701001',3,'12:02:03','12:00:50');
+('201701001',3,'23:05:17','22:02:02');
 
 /*Table structure for table `soal` */
 
@@ -138,7 +138,7 @@ CREATE TABLE `soal` (
   `kunci` int(2) NOT NULL,
   `id_kelompok` int(11) NOT NULL,
   PRIMARY KEY (`id_soal`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=latin1;
 
 /*Data for the table `soal` */
 
@@ -242,7 +242,17 @@ insert  into `soal`(`id_soal`,`id_tes`,`soal`,`pilihan_1`,`pilihan_2`,`pilihan_3
 (97,3,'<p>Hamster adalah hewan yang cepat sekali berkembang biak. Dalam seminggu ia dapat melahirkan 4 anak. Sedangkan untuk berkembang dari kecil sampai dewasa (siap untuk menikah) hamster membutuhkan waktu 1 minggu. Elsi adalah penyihir yang suka hamster. Pada tanggal 4 Januari ia membeli 1 hamster kecil betina. Berapakah hamster yang dimiliki Elsi pada tanggal 1 Februari? (asumsikan januari memiliki 31 hari)  lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>455</p>',5,20),
 (98,3,'<p>Hamster adalah hewan yang cepat sekali berkembang biak. Dalam seminggu ia dapat melahirkan 4 anak. Sedangkan untuk berkembang dari kecil sampai dewasa (siap untuk menikah) hamster membutuhkan waktu 1 minggu. Elsi adalah penyihir yang suka hamster. Pada tanggal 4 Januari ia membeli 1 hamster kecil betina. Berapakah hamster yang dimiliki Elsi pada tanggal 1 Februari? (asumsikan januari memiliki 31 hari)  lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>455</p>',5,20),
 (99,3,'<p>Hamster adalah hewan yang cepat sekali berkembang biak. Dalam seminggu ia dapat melahirkan 4 anak. Sedangkan untuk berkembang dari kecil sampai dewasa (siap untuk menikah) hamster membutuhkan waktu 1 minggu. Elsi adalah penyihir yang suka hamster. Pada tanggal 4 Januari ia membeli 1 hamster kecil betina. Berapakah hamster yang dimiliki Elsi pada tanggal 1 Februari? (asumsikan januari memiliki 31 hari)  lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>455</p>',5,20),
-(100,3,'<p>Hamster adalah hewan yang cepat sekali berkembang biak. Dalam seminggu ia dapat melahirkan 4 anak. Sedangkan untuk berkembang dari kecil sampai dewasa (siap untuk menikah) hamster membutuhkan waktu 1 minggu. Elsi adalah penyihir yang suka hamster. Pada tanggal 4 Januari ia membeli 1 hamster kecil betina. Berapakah hamster yang dimiliki Elsi pada tanggal 1 Februari? (asumsikan januari memiliki 31 hari)  lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>455</p>',5,20);
+(100,3,'<p>Hamster adalah hewan yang cepat sekali berkembang biak. Dalam seminggu ia dapat melahirkan 4 anak. Sedangkan untuk berkembang dari kecil sampai dewasa (siap untuk menikah) hamster membutuhkan waktu 1 minggu. Elsi adalah penyihir yang suka hamster. Pada tanggal 4 Januari ia membeli 1 hamster kecil betina. Berapakah hamster yang dimiliki Elsi pada tanggal 1 Februari? (asumsikan januari memiliki 31 hari)  lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al lalala lalala laalla la all ala lalalalala lalalalal al alal la lal ala la la la llalalalalal a lal al</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>455</p>',5,20),
+(101,3,'<p>asd</p>','<p>1</p>','<p>2</p>','<p>3</p>','<p>4</p>','<p>5</p>',1,21),
+(102,3,'<p>QWE</p>','<p>QWE</p>','<p>2</p>','<p>3</p>','<p>45</p>','<p>3</p>',2,21),
+(103,3,'<p>4</p>','<p>3</p>','<p>4</p>','<p>3</p>','<p>2</p>','<p>1</p>',2,21),
+(104,3,'<p>8</p>','<p>7</p>','<p>566</p>','<p>J</p>','<p>G</p>','<p>IO</p>',3,21),
+(105,3,'<p>JM</p>','<p>U</p>','<p>O</p>','<p>UI</p>','<p>IU</p>','<p>IU</p>',3,21),
+(106,3,'<p>H</p>','<p>O</p>','<p>IU</p>','<p>TV</p>','<p>LN</p>','<p>BIY</p>',3,22),
+(107,3,'<p>abc</p>','<p>qwkeo</p>','<p>kqwkeo</p>','<p>kqwoekqw</p>','<p>qwkoekqw</p>','<p>qwekok</p>',4,22),
+(108,3,'<p><img src=\"../media/source/Jual-Beli-ginjall-ok.png\" alt=\"\" width=\"599\" height=\"311\" /></p>\r\n<p>itu apa?</p>','<p>ginjal</p>','<p>organ</p>','<p>jantung</p>','<p>hati</p>','<p>manusia</p>',1,22),
+(109,3,'<p>3</p>','<p>34</p>','<p>4</p>','<p>45</p>','<p>5</p>','',4,22),
+(110,3,'<p>5</p>','<p>324</p>','<p>66</p>','<p>67</p>','<p>3</p>','<p>4</p>',3,22);
 
 /*Table structure for table `tes` */
 
@@ -262,7 +272,7 @@ CREATE TABLE `tes` (
 /*Data for the table `tes` */
 
 insert  into `tes`(`id_tes`,`judul`,`tanggal`,`waktu`,`jml_soal`,`acak_soal`,`acak_jawaban`) values 
-(3,'Schhhhhhh17','2017-09-10',190,100,'Y','Y'),
+(3,'Schhhhhhh17','2017-09-10',190,110,'Y','Y'),
 (4,'Warmup dude','2017-08-04',129,123,'N','Y');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
