@@ -48,6 +48,7 @@ function resetjawaban(index){
          if(data=="ok"){
             $('.tombol-'+no).removeClass("green");
             $('.huruf-pilihan').css('background-color', 'transparent');
+            $("input:radio").attr("checked", false);
 //           document.getElementsByClass("jadul").style.backgroundColor="transparent";
 //            $('jadul').css('background-color', 'transparent');
             // $('.huruf-'+no).removeProp('checked');
@@ -95,7 +96,7 @@ function kirim_jawaban(index, jawab){
          if(data=="ok"){
             no = index+1;
             $('.tombol-'+no).addClass("green");
-            $('label').click(function() {
+            /*$('label').click(function() {
                $('label').addClass('resetcok');
                var $this = $(this);
                $(this).css('background-color', '#40BCD8');
@@ -104,7 +105,7 @@ function kirim_jawaban(index, jawab){
                var $this = $(this);
                $('label').addClass('resetcok');
                $(this).css('background-color', '#40BCD8');
-            });
+            });*/
             // $('input:radio').change(function(){
             //    var $this = $(this);
             //    $this.closest('.col-xs-2').find('div.highlight').removeClass('highlight');
