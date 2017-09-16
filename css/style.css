@@ -50,13 +50,13 @@ footer{
    cursor: pointer;
 }
 .huruf{
-   display: block;
-   width: 35px;
-   padding: 3px 0;
+   width: 10px;
+   padding: 0px 0;
    text-align: center;
    border: 0px solid #313638;
    border-radius: 50%;
    cursor: pointer;
+   height: 30px;
 }
 /*
 .huruf-A{
@@ -82,13 +82,13 @@ footer{
    cursor: pointer;
    display: inline-block;
 }*/
-/*Menyembunyikan input radio*/
+/*Menyembunyikan input radio
 input[type=radio]{
    display: none;
 }
 input[type=radio]:checked ~ .huruf-pilihan{
    background-color: #40BCD8;
-}
+}*/
 .resetcok{
    background-color: transparent;
 }
@@ -98,8 +98,11 @@ input[type=radio]:checked ~ .huruf-pilihan{
    margin-left: 50px;
    
 }
-.pilihan .teks{
+.pilihan{
    padding-top: 3px;
+}
+.teks{
+   padding-top: 0px;
 }
 .konten-ujian{
    display: block;
