@@ -23,10 +23,11 @@ BUGS and PROBLEMS:
 	(solusi yg terpikirkan : daripada timer js diload di function(), countdown disimpan di session)
 - [FIXED] Petunjuk harus terus-menerus dicentang dan dilewatin
 	(solusi yg terpikirkan : ubah tabel, kasih flag di tabel yg nandain kalo user udah pernah centang petunjuk)
-- Waktu serentak
-- [FIXED] Acak soal berantai (tiap 5 soal diacak) - TOLONG DICEK JAR
-- [WIP 95%] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?)
+- [FIXED (?)] Waktu serentak (catatan: tabel nilai udah ada isinya duluan)
+- [FIXED] Acak soal berantai (tiap 5 soal diacak)
+- [FIXED] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?), tanpa styling, radio button show
 - [FIXED] Reset password peserta lewat panel admin -> Menjadi ganti password lewat panel sebagai admin
+- Masukin manual di home page
 - Some sh%ts yg belum bisa difixin karena sibuk cari jodoh, mantanmu gak kangen kon kok jar hehe
 
 
