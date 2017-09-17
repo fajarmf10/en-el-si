@@ -26,6 +26,7 @@ $logintime     = date("H:i:s");
 $logindatetime = new DateTime($logintime);
 
 if ($logindatetime > $jammulaidatetime) {
+    $mulai = 1;
     $interval          = $logindatetime->diff($jammulaidatetime);
     $elapsedtime       = $interval->format("%H:%i:%s");
 
@@ -47,7 +48,9 @@ if ($logindatetime > $jammulaidatetime) {
     }
 }
 else {
-    $_SESSION['waktu_sisa']=$rtes['waktu_sisa'];
+    $_SESSION['waktu_sisa']=$rtes['waktu'];
+    $_SESSION['waktu_sisa'].=":00";
+    $mulai = 0;
 }
 /*
 if (mysqli_num_rows($qsession) < 1 and $rtes['id_tes'] != "0") {
@@ -102,7 +105,7 @@ if (mysqli_num_rows($qsession) < 1 and $rtes['id_tes'] != "0") {
 }*/
 
 //kalo ga ada tes yg aktif hari ini
-if ($ttes < 1) {
+if ($ttes < 1  or $mulai == 0) {
     echo '<div class="alert alert-info">Schematics belum dimulai. Harap bersabar!</div>';
 }
 
