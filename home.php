@@ -25,7 +25,7 @@ $jammulaidatetime = new DateTime($rtes['jam_mulai']);
 $logintime     = date("H:i:s");
 $logindatetime = new DateTime($logintime);
 
-if ($logindatetime > $jammulaidatetime and $rnilai > 0) {
+if ($logindatetime > $jammulaidatetime) {
     $interval          = $logindatetime->diff($jammulaidatetime);
     $elapsedtime       = $interval->format("%H:%i:%s");
 
@@ -39,7 +39,15 @@ if ($logindatetime > $jammulaidatetime and $rnilai > 0) {
         $waktubaru = 1;
     }
     $hasilakhir = secondshour($waktubaru);
-    mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
+    if ($rnilai > 0){
+        mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$rtes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
+    }
+    else {
+        $_SESSION['waktu_sisa'] = $hasilakhir;
+    }
+}
+else {
+    $_SESSION['waktu_sisa']=$rtes['waktu_sisa'];
 }
 /*
 if (mysqli_num_rows($qsession) < 1 and $rtes['id_tes'] != "0") {
