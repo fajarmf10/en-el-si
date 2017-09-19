@@ -48,13 +48,15 @@ $acak_soal = implode(",", $arr_soal);
 $jawaban   = implode(",", $arr_jawaban);
 
 //input data ke tabel nilai jika data nilai belum ada
-$qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$_GET[tes]'");
+$qnilai = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");
 if (mysqli_num_rows($qnilai) < 1) {
-    mysqli_query($mysqli, "INSERT INTO nilai SET id_tim='$_SESSION[id_tim]', id_tes='$_GET[tes]', acak_soal='$acak_soal', jawaban='$jawaban', sisa_waktu='$_SESSION[waktu_sisa]', help='Y'");
+    //mysqli_query($mysqli, "INSERT INTO `nilai` SET `id_tim`='$_SESSION[id_tim]', `id_tes`='$_GET[tes]', `acak_soal`='$acak_soal', `jawaban`='$jawaban', `sisa_waktu`='$_SESSION[waktu_sisa]', `help`='Y'");
+    mysqli_query($mysqli, "INSERT INTO `nilai`(`id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`, `help`) VALUES ('$_SESSION[id_tim]', '$_GET[tes]', '$acak_soal', '$jawaban', '$_SESSION[waktu_sisa]', '0', '', 'Y')");
+
 }
 
 //timer fix
-$qnilai     = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tim='$_SESSION[id_tim]' AND id_tes='$_GET[tes]'");
+$qnilai     = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");
 $rnilai     = mysqli_fetch_array($qnilai);
 $sisa_waktu = explode(":", $rnilai['sisa_waktu']);
 

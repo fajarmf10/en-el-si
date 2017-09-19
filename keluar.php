@@ -5,9 +5,7 @@
       <h3><b>Konfirmasi Test</b></h3>
    </div>
    <div class="panel-body text-center">
-		Apakah anda yakin akan mengakhiri tes?<br>
-		Semua jawaban yang anda kirimkan tidak bisa diubah lagi setelah mengklik tombol logout.
-		Anda juga tidak akan bisa login kembali.
+		Apakah anda yakin ingin logout?
    </div>
    <div class="panel-footer">
 		<div class="row">

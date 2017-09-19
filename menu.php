@@ -17,6 +17,6 @@ if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
       <li><a><i class="glyphicon glyphicon-user"></i> Selamat datang, Tim <span style="text-transform: uppercase;"><?= $_SESSION['namatim'] ?></span></a></li>
    </ul>
    <ul class="nav navbar-nav navbar-right">
-      <li><a href="keluar.php" class="navigation"><i class="glyphicon glyphicon-off"></i> Keluar </a></li>
+      <li><a href="keluar.php" class="navigation"><i class="glyphicon glyphicon-off"></i> Logout </a></li>
    </ul>
 </div>
