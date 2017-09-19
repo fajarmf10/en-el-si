@@ -27,7 +27,7 @@ BUGS and PROBLEMS:
 - [FIXED] Acak soal berantai (tiap 5 soal diacak)
 - [FIXED] Mengosongkan jawaban (Tombol ragu-ragu diganti menjadi tombol kosongkan jawaban?), tanpa styling, radio button show
 - [FIXED] Reset password peserta lewat panel admin -> Menjadi ganti password lewat panel sebagai admin
-- Masukin manual di home page
+- [FIXED] Masukin manual di home page
 - Some sh%ts yg belum bisa difixin karena sibuk cari jodoh, mantanmu gak kangen kon kok jar hehe
 
 
