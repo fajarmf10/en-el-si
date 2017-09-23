@@ -56,7 +56,7 @@ elseif($_GET['action']=="selesai_tes"){
     }
 
     //$nilai = $jbenar/count($arr_soal)*100;
-    $nilai = $jbenar*4 + $jsalah*(-1);
+    $nilai = $jbenar*3 + $jsalah*(-1);
 
     mysqli_query($mysqli, "UPDATE nilai SET jml_benar='$jbenar', nilai='$nilai' WHERE id_tes='$_POST[tes]' AND id_tim='$_SESSION[id_tim]'");
 

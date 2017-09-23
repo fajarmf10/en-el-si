@@ -9,21 +9,21 @@ if($_GET['action'] == "table_data"){
    $no = 1;
    while($r = mysqli_fetch_array($query)){
       $soal = $r['soal'];
-      $soal .= '<ol type="A">';		
-      for($i=1; $i<=5; $i++){	
+      $soal .= '<ol type="A">';     
+      for($i=1; $i<=5; $i++){ 
          $kolom = "pilihan_$i";
          if($r['kunci']==$i) $soal .= '<li class="text-primary" style="font-weight: bold">'.$r[$kolom].'</li>';
          else $soal .= '<li>'.$r[$kolom].'</li>';
       }
       $soal .= '</ol>';
-		
+      
       $row = array();
       $row[] = $no;
       $row[] = $soal;
       $row[] = create_action($r['id_soal']);
       $data[] = $row;
       $no++;
-   }	
+   }  
    $output = array("data" => $data);
    echo json_encode($output);
 }
@@ -41,15 +41,8 @@ elseif($_GET['action'] == "insert"){
    $pil_3 = addslashes($_POST['pil_3']);
    $pil_4 = addslashes($_POST['pil_4']);
    $pil_5 = addslashes($_POST['pil_5']);
-   mysqli_query($mysqli, "INSERT INTO soal SET 
-      id_tes = '$_GET[tes]',
-      soal = '$soal',
-      pilihan_1 = '$pil_1',
-      pilihan_2 = '$pil_2',
-      pilihan_3 = '$pil_3',
-      pilihan_4 = '$pil_4',
-      pilihan_5 = '$pil_5',
-      kunci = '$_POST[kunci]'");	
+   mysqli_query($mysqli, "INSERT INTO `soal`(`id_tes`, `soal`, `pilihan_1`, `pilihan_2`, `pilihan_3`, `pilihan_4`, `pilihan_5`, `kunci`) VALUES ('$_GET[tes]','$soal','$pil_1','$pil_2','$pil_3','$pil_4','$pil_5','$_POST[kunci]')"); 
+   
    mysqli_query($mysqli, "UPDATE soal SET id_kelompok = CEIL (id_soal/5) WHERE id_tes = '$_GET[tes]' AND
       soal = '$soal' AND
       pilihan_1 = '$pil_1' AND
@@ -80,7 +73,7 @@ elseif($_GET['action'] == "update"){
 }
 
 elseif($_GET['action'] == "delete"){
-   mysqli_query($mysqli, "DELETE FROM soal WHERE id_soal='$_GET[id]'");	
+   mysqli_query($mysqli, "DELETE FROM soal WHERE id_soal='$_GET[id]'"); 
 }
 
 ?>

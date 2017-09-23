@@ -73,7 +73,7 @@ function save_data(){
       },
       error : function(){
          alert("Tidak dapat menyimpan data!");
-      }			
+      }        
    });
    return false;
 }
@@ -111,13 +111,11 @@ function tinymce_config(){
       plugins: [
          "advlist autolink lists link image charmap print preview anchor",
          "searchreplace visualblocks code fullscreen",
-         "insertdatetime media table contextmenu paste imagetools responsivefilemanager tiny_mce_wiris"
+         "insertdatetime media table contextmenu paste imagetools tiny_mce_wiris jbimages"
       ],
-      toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager tiny_mce_wiris_formulaEditor",
-	      
-      external_filemanager_path:"../assets/filemanager/",
-      filemanager_title:"File Manager" ,
-      external_plugins: { "filemanager" : "../filemanager/plugin.min.js"}
+      toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | tiny_mce_wiris_formulaEditor | link image jbimages",
+   
+      relative_urls: false
    });
 }
 
@@ -136,7 +134,7 @@ function tinymce_config_simple(){
          "insertdatetime media table contextmenu paste imagetools responsivefilemanager tiny_mce_wiris"
       ],
       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager tiny_mce_wiris_formulaEditor",
-	      
+         
       external_filemanager_path:"../assets/filemanager/",
       filemanager_title:"File Manager" ,
       external_plugins: { "filemanager" : "../filemanager/plugin.min.js"},
@@ -157,7 +155,7 @@ function import_data(){
    $.each($('#modal_import form').serializeArray(), function(a, b){
       formdata.append(b.name, b.value);
    });
-	
+   
    tes = $('#id_tes').val();
    $.ajax({
       url: 'ajax/ajax_soal.php?action=import&tes='+tes,

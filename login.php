@@ -1,6 +1,23 @@
 <?php
 session_start();
 ob_start();
+
+$lastModified = filemtime(__FILE__);
+$etagFile = md5(__FILE__);
+
+$ifModifiedSince=(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false);
+$etagHeader=(isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
+
+header("Last-Modified: ".gmdate("D, d M Y H:i:s", $lastModified)." GMT");
+header("Etag: $etagFile");
+header('Cache-Control: public');
+
+if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE'])==$lastModified || $etagHeader == $etagFile)
+{
+       header("HTTP/1.1 304 Not Modified");
+       exit;
+}
+
 ?>
 
 <html>
@@ -10,10 +27,10 @@ ob_start();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/login.css"/>
 	
-<script type="text/javascript" src="assets/jquery/jquery-2.0.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.2.min.js" integrity="sha256-TZWGoHXwgqBP1AF4SZxHIBKzUdtMGk0hCQegiR99itk=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -62,7 +79,7 @@ $(function(){
 							<input type="password" name="password" placeholder="Password" class="form-control">
 						</div><br/>
 
-						<button class="btn btn-primary pull-right login-button"><i class="glyphicon glyphicon-log-in"></i> Login Ujian</button><br/>
+						<button class="btn btn-primary pull-right login-button"><i class="glyphicon glyphicon-log-in"></i> Login Schematics</button><br/>
 					</form>
 					</div>
 				</div>

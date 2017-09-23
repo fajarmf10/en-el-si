@@ -29,6 +29,7 @@ if($_GET['action'] == "table_data"){
 
       $row[] = $r['acak_soal'];
       $row[] = $r['acak_jawaban'];
+      $row[] = $r['jam_mulai'];
 
       $row[] = $btn_soal;
       $row[] = $label;
@@ -36,7 +37,7 @@ if($_GET['action'] == "table_data"){
       $data[] = $row;
       $no++;
    }
-	
+   
    $output = array("data" => $data);
    echo json_encode($output);
 }
@@ -44,19 +45,13 @@ if($_GET['action'] == "table_data"){
 //Menampilkan data ke form
 elseif($_GET['action'] == "form_data"){
    $query = mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[id]'");
-   $data = mysqli_fetch_array($query);	
+   $data = mysqli_fetch_array($query); 
    echo json_encode($data);
 }
 
 //Menambah data
 elseif($_GET['action'] == "insert"){
-   mysqli_query($mysqli, "INSERT INTO tes SET
-      judul = '$_POST[judul]',
-      tanggal = '$_POST[tanggal]',
-      waktu = '$_POST[waktu]',
-      acak_soal = '$_POST[acak_soal]',
-      acak_jawaban = '$_POST[acak_jawaban]',
-      jml_soal = '$_POST[jml_soal]'");	
+   mysqli_query($mysqli, "INSERT INTO `tes`(`judul`, `tanggal`, `waktu`, `jml_soal`, `acak_soal`, `acak_jawaban`, `jam_mulai`) VALUES ('$_POST[judul]','$_POST[tanggal]','$_POST[waktu]','$_POST[jml_soal]','$_POST[acak_soal]','$_POST[acak_jawaban]', '$_POST[jam_mulai]')");  
 }
 
 //Mengedit data
@@ -68,10 +63,10 @@ elseif($_GET['action'] == "update"){
       jml_soal = '$_POST[jml_soal]',
       acak_soal = '$_POST[acak_soal]',
       acak_jawaban = '$_POST[acak_jawaban]'
-      WHERE id_tes='$_POST[id]'");	
+      WHERE id_tes='$_POST[id]'");  
 }
 
 elseif($_GET['action'] == "delete"){
-   mysqli_query($mysqli, "DELETE FROM tes WHERE id_tes='$_GET[id]'");	
+   mysqli_query($mysqli, "DELETE FROM tes WHERE id_tes='$_GET[id]'");   
 }
 ?>

@@ -22,13 +22,14 @@ echo '<hr/><div class="alert alert-info"><ul>
 
 create_button("success", "plus-sign", "Tambah", "btn-add", "form_add()");
 
-create_table(array("Judul Tes", "Tanggal", "Waktu", "Jml. Soal", "Acak Soal", "Acak Jawaban", "Soal", "Lihat Nilai", "Aksi"));
+create_table(array("Judul Tes", "Tanggal", "Waktu", "Jml. Soal", "Acak Soal", "Acak Jawaban", "Jam Mulai", "Soal", "Lihat Nilai", "Aksi"));
 
 open_form("modal_tes", "return save_data()");
    create_textbox("Judul Tes", "judul", "text", 4, "", "required");
    create_textbox("Tanggal", "tanggal", "text", 4, "datepicker", "required");
    create_textbox("Waktu (menit)", "waktu", "number", 2, "", "required");
    create_textbox("Jml. Soal", "jml_soal", "number", 2, "", "required");
+   create_textbox("Jam mulai", "jam_mulai", "text", 5, "", "required");
 
    $list = array();
    $list[] = array('Y', 'Ya');
