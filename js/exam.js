@@ -15,7 +15,7 @@ function tampil_soal(no){
          if(data=="ok"){
             $('.blok-soal').removeClass('active');
             $('.soal-'+no).addClass('active');
-            $('input[type=radio]:checked ~ .huruf-pilihan').css('background-color', '#40BCD8');
+//            $('input[type=radio]:checked ~ .huruf-pilihan').css('background-color', '#40BCD8');
          }else{
             alert(data);
          }

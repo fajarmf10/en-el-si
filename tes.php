@@ -32,8 +32,7 @@ if ($qwtes['acak_soal'] == 'Y'){
   }
 }
 else{
-    
-    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY urut, id_soal LIMIT $qwtes[jml_soal]");
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY id_kelompok LIMIT $qwtes[jml_soal]");
     while ($rsoal = mysqli_fetch_array($qsoal)) {
       $arr_soal[]    = $rsoal['id_soal'];
       $arr_jawaban[] = 0;
@@ -41,8 +40,8 @@ else{
 }
 
 //kalo gaada soal
-if (mysqli_num_rows($qsoal) == 0)
-    die('<div class="alert alert-warning">Belum ada soal pada tes ini. Silahkan menghubungi panitia!</div>');
+//if (mysqli_num_rows($qsoal) == 0)
+//    die('<div class="alert alert-warning">Belum ada soal pada tes ini. Silahkan menghubungi panitia!</div>');
 
 $acak_soal = implode(",", $arr_soal);
 $jawaban   = implode(",", $arr_jawaban);
@@ -51,9 +50,11 @@ $jawaban   = implode(",", $arr_jawaban);
 $qnilai = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");
 if (mysqli_num_rows($qnilai) < 1) {
     //mysqli_query($mysqli, "INSERT INTO `nilai` SET `id_tim`='$_SESSION[id_tim]', `id_tes`='$_GET[tes]', `acak_soal`='$acak_soal', `jawaban`='$jawaban', `sisa_waktu`='$_SESSION[waktu_sisa]', `help`='Y'");
-    mysqli_query($mysqli, "INSERT INTO `nilai`(`id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`, `help`) VALUES ('$_SESSION[id_tim]', '$_GET[tes]', '$acak_soal', '$jawaban', '$_SESSION[waktu_sisa]', '0', '', 'Y')");
-
+    mysqli_query($mysqli, "INSERT INTO `nilai`(`id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`, `help`) VALUES ('$_SESSION[id_tim]', '$_GET[tes]', '$acak_soal', '$jawaban', '$_SESSION[jadinya]', '0', '', 'Y')");
 }
+// else{
+//   mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$_SESSION[waktu_sisa]', help='Y' WHERE id_tes='$tes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
+// }
 
 //timer fix
 $qnilai     = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");

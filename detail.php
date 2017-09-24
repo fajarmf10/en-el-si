@@ -10,6 +10,71 @@ if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
 $edisi = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM edisi WHERE id_edisi='$_SESSION[edisi]'"));
 $tes   = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
 
+//
+// $qtes     = mysqli_query($mysqli, "SELECT * FROM tes t1, edisites t2 WHERE t1.tanggal='$tgl' AND t1.id_tes=t2.id_tes AND t2.id_edisi='$_SESSION[edisi]' AND t2.aktif='Y'");
+// $ttes     = mysqli_num_rows($qtes);
+// $rtes     = mysqli_fetch_array($qtes);
+//
+
+$qnilai = mysqli_query($mysqli, "SELECT * FROM nilai WHERE id_tes='$_GET[tes]' AND id_tim='$_SESSION[id_tim]'");
+$rnilai = mysqli_num_rows($qnilai);
+$tnilai = mysqli_fetch_array($qnilai);
+
+if ($rnilai < 1) {
+  # checking waktunya, kali aja pesertanya telat login
+  $jammulaidatetime = new DateTime($tes['jam_mulai']);
+  $logintime        = date("H:i:s");
+  $logindatetime    = new DateTime($logintime);
+  if ($logindatetime > $jammulaidatetime) {
+    $interval          = $logindatetime->diff($jammulaidatetime);
+    $elapsedtime       = $interval->format("%H:%i:%s");
+
+    $et = new DateTime($elapsedtime);
+    $elapsedtimearr = explode(":", $elapsedtime);
+    $durasikurang   = dateseconds($elapsedtimearr[0], $elapsedtimearr[1], $elapsedtimearr[2]);
+
+    $waktubaru = $tes['waktu']*60 - $durasikurang;
+    if ($waktubaru < 0) {
+        $waktubaru = 1;
+    }
+    $hasilakhir = secondshour($waktubaru);
+
+    # simpan aja di session
+    $_SESSION['jadinya'] = $hasilakhir;
+  }
+  else{
+    $_SESSION['jadinya']=$tes['waktu'];
+    $_SESSION['jadinya'].=":00";
+  }
+}
+else{
+  # Kita cuman perlu update sisa_waktu
+  $jammulaidatetime = new DateTime($tes['jam_mulai']);
+  $logintime        = date("H:i:s");
+  $logindatetime    = new DateTime($logintime);
+
+  $mulai = 1;
+  $interval          = $logindatetime->diff($jammulaidatetime);
+  $elapsedtime       = $interval->format("%H:%i:%s");
+
+  //kurangi dengan durasi
+  $et = new DateTime($elapsedtime); 
+  $elapsedtimearr = explode(":", $elapsedtime);
+  $durasikurang   = dateseconds($elapsedtimearr[0], $elapsedtimearr[1], $elapsedtimearr[2]);
+        
+  $waktubaru = $tes['waktu']*60 - $durasikurang;
+  if ($waktubaru < 0) {
+      $waktubaru = 1;
+  }
+  $hasilakhir = secondshour($waktubaru);
+
+  mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$hasilakhir' WHERE id_tes='$tes[id_tes]' AND id_tim='$_SESSION[id_tim]'");  
+}
+
+
+
+
+
 
 ?>
 
