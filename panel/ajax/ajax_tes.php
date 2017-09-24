@@ -51,7 +51,7 @@ elseif($_GET['action'] == "form_data"){
 
 //Menambah data
 elseif($_GET['action'] == "insert"){
-   mysqli_query($mysqli, "INSERT INTO `tes`(`judul`, `tanggal`, `waktu`, `jml_soal`, `acak_soal`, `acak_jawaban`, `jam_mulai`) VALUES ('$_POST[judul]','$_POST[tanggal]','$_POST[waktu]','$_POST[jml_soal]','$_POST[acak_soal]','$_POST[acak_jawaban]', '$_POST[jam_mulai]')");  
+   mysqli_query($mysqli, "INSERT INTO `tes`(`judul`, `tanggal`, `waktu`, `jml_soal`, `jam_mulai`, `acak_soal`, `acak_jawaban`, `jam_mulai`) VALUES ('$_POST[judul]','$_POST[tanggal]','$_POST[waktu]','$_POST[jml_soal]', '$_POST[jam_mulai]', '$_POST[acak_soal]','$_POST[acak_jawaban]', '$_POST[jam_mulai]')");  
 }
 
 //Mengedit data
@@ -61,6 +61,7 @@ elseif($_GET['action'] == "update"){
       tanggal = '$_POST[tanggal]',
       waktu = '$_POST[waktu]',
       jml_soal = '$_POST[jml_soal]',
+      jam_mulai = '$_POST[jam_mulai]',
       acak_soal = '$_POST[acak_soal]',
       acak_jawaban = '$_POST[acak_jawaban]'
       WHERE id_tes='$_POST[id]'");  

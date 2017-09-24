@@ -38,6 +38,7 @@ function form_edit(id){
          $('#tanggal').val(data.tanggal);
          $('#waktu').val(data.waktu);
          $('#jml_soal').val(data.jml_soal);
+         $('#jam_mulai').val(data.jam_mulai);
          $('#acak_soal').val(data.acak_soal);
          $('#acak_jawaban').val(data.acak_jawaban);
       },
