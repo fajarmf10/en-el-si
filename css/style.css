@@ -58,7 +58,6 @@ footer{
    cursor: pointer;
    height: 30px;
 }
-/*
 .huruf-A{
    background: url('../images/A.png') no-repeat;
 }
@@ -81,14 +80,14 @@ footer{
    height: 28px;
    cursor: pointer;
    display: inline-block;
-}*/
-/*Menyembunyikan input radio
+}
+/*Menyembunyikan input radio*/
 input[type=radio]{
    display: none;
 }
-input[type=radio]:checked ~ .huruf-pilihan{
-   background-color: #40BCD8;
-}*/
+input[type=radio]:checked + .huruf-pilihan{
+   background: #40BCD8;
+}
 .resetcok{
    background-color: transparent;
 }

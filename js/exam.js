@@ -15,6 +15,7 @@ function tampil_soal(no){
          if(data=="ok"){
             $('.blok-soal').removeClass('active');
             $('.soal-'+no).addClass('active');
+//            $('huruf').css('background-color', '#40BCD8');
 //            $('input[type=radio]:checked ~ .huruf-pilihan').css('background-color', '#40BCD8');
          }else{
             alert(data);
@@ -46,9 +47,12 @@ function resetjawaban(index){
       data: "tes=" + tes + "&index=" + index + "&sisa_waktu=" + sisa_waktu + "&jawab=0",
       success: function(data){
          if(data=="ok"){
+            no = index+1;
             $('.tombol-'+no).removeClass("green");
-            $('.huruf-pilihan').css('background-color', 'transparent');
-            $("input:radio").attr("checked", false);
+            $('#yyy').prop("checked", false);
+            $('#yyy').attr("background","transparent");
+//            $('.huruf-pilihan').css('background-color', 'transparent');
+//            $("input:radio").attr("checked", false);
 //           document.getElementsByClass("jadul").style.backgroundColor="transparent";
 //            $('jadul').css('background-color', 'transparent');
             // $('.huruf-'+no).removeProp('checked');

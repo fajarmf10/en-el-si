@@ -32,7 +32,7 @@ if ($qwtes['acak_soal'] == 'Y'){
   }
 }
 else{
-    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY id_kelompok LIMIT $qwtes[jml_soal]");
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY id_kelompok, id_soal LIMIT $qwtes[jml_soal]");
     while ($rsoal = mysqli_fetch_array($qsoal)) {
       $arr_soal[]    = $rsoal['id_soal'];
       $arr_jawaban[] = 0;
@@ -129,12 +129,12 @@ for ($s = 0; $s < count($arr_soal); $s++) {
     );
     $arr_class[$no] = ($arr_jawaban[$s] != 0) ? "green" : "";
     for ($i = 0; $i < count($arr_pilihan); $i++) {
-//        $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
+        $checked = ($arr_jawaban[$s] == $arr_pilihan[$i]['no']) ? "checked" : "";
         $pilihan = str_replace("../media", "media", $arr_pilihan[$i]['pilihan']);
         echo '<div class="row pilihan">
    <div class="col-xs-2">
-     <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="huruf-' . $no . '-' . $i . '">
-     <label for="huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
+     <input type="radio" class="jawab-'.$no.'" data-huruf="'.$arr_huruf[$i].'" name="jawab-'.$no.'" id="yyy huruf-'.$no.'-'.$i.'" '.$checked.'>
+     <label for="yyy huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
     </div>
 <div class="col-xs-10">
    <div class="teks">' . $pilihan . ' </div> 
