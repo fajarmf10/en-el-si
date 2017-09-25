@@ -30,7 +30,7 @@ if ($pre_jmluser == 0) {
 
     # check login response. put data to table (db) upon success.
     $namatim = json_decode (curl_exec ($login_request));
-    if ($namatim) {
+    if (curl_getinfo ($login_request)['http_code'] == 200) {
         # the credentials supplied are valid, put it to db.
         mysqli_query ($link, "INSERT INTO peserta VALUES ('$id_tim',
                                                           '$namatim',
