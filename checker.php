@@ -8,12 +8,12 @@ $password = antiinjeksi(md5($_POST['password']));
 
 
 # check if user with this id already fetched in db.
-$pre_cekuser = mysqli_query ($mysqli, "SELECT * FROM peserta WHERE id_tim='$id_tim' AND password='$password'");
+$pre_cekuser = mysqli_query ($mysqli, "SELECT * FROM peserta WHERE id_tim='$id_tim'");
 $pre_jmluser = mysqli_num_rows ($pre_cekuser);
 
 if ($pre_jmluser == 0) {
     # user data does not exist, forward login to schematics.its.ac.id.
-    $api_url = 'http://schematics.its.ac.id/api/login';
+    $api_url = 'https://schematics.its.ac.id/api/login';
     $link = new mysqli ($host, $user, $pass, $db);
 
     $login_request = curl_init ();
@@ -29,7 +29,7 @@ if ($pre_jmluser == 0) {
     ));
 
     # check login response. put data to table (db) upon success.
-    $namatim = curl_exec ($login_request);
+    $namatim = json_decode (curl_exec ($login_request));
     if ($namatim) {
         # the credentials supplied are valid, put it to db.
         mysqli_query ($link, "INSERT INTO peserta VALUES ('$id_tim',
