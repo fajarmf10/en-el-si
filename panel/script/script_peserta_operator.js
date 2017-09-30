@@ -14,6 +14,21 @@ function refresh_data(){
    table.ajax.reload();
 }
 
+function reset_login_all(){
+  if(confirm("Apakah yakin akan mereset login semua peserta?")){
+      $.ajax({
+         url : "ajax/ajax_peserta_operator.php?action=reset_login_all",
+         type : "GET",
+         success : function(data){
+            table.ajax.reload();
+         },
+         error : function(){
+            alert("Tidak dapat mereset login!");
+         }
+      });
+   }
+}
+
 function reset_login(id){
    if(confirm("Apakah yakin akan mereset login peserta dengan ID Tim "+id+" ?")){
       $.ajax({

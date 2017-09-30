@@ -12,7 +12,7 @@ if($_GET['action'] == "table_data"){
       if($r['status'] == "on") $status = '<b class="text-primary">login</b>';
       elseif($r['status'] == "mengerjakan") $status = '<b class="text-danger">mengerjakan</b>';
       else $status = '<b class="text-muted">offline</b>';
-		
+      
       $row = array();
       $row[] = $no;
       $row[] = $r['id_tim'];
@@ -24,12 +24,16 @@ if($_GET['action'] == "table_data"){
       $data[] = $row;
       $no++;
    }
-	
+   
    $output = array("data" => $data);
    echo json_encode($output);
 }
 
 elseif($_GET['action'] == "reset_login"){
    mysqli_query($mysqli, "UPDATE peserta set status='off' WHERE id_tim='$_GET[id_tim]'");
+}
+
+elseif($_GET['action'] == "reset_login_all"){
+   mysqli_query($mysqli, "UPDATE peserta set status='off'");
 }
 ?>

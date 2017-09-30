@@ -1,6 +1,4 @@
 <?php
-session_start();
-ob_start();
 
 $lastModified = filemtime(__FILE__);
 $etagFile = md5(__FILE__);
@@ -17,6 +15,9 @@ if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE'])==$lastModified || $etagHeader
        header("HTTP/1.1 304 Not Modified");
        exit;
 }
+
+session_start();
+ob_start();
 
 //Timeout login
 $timeout = $_SESSION['timeout'];
@@ -43,7 +44,7 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['lo
 <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="../assets/dataTables/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
-	
+  
 <script type="text/javascript" src="../assets/jquery/jquery-2.0.2.min.js"></script>
 
 </head>
@@ -53,9 +54,9 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['lo
    <div class="container">
       <?php include "menu.php"; ?> 
    </div>
-</nav>	
+</nav>  
 
-<section> 	
+<section>   
    <div  class="container">
       <div class="row">
          <div class="col-xs-12" id="content"></div>
@@ -68,7 +69,7 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['lo
       <p class="text-center">Copyright &copy; Schematics ITS. All right reserved.</p>
    </div>
 </footer>
-	
+  
 <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../assets/dataTables/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../assets/dataTables/js/dataTables.bootstrap.min.js"></script>

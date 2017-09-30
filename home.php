@@ -14,29 +14,41 @@ $qtes     = mysqli_query($mysqli, "SELECT * FROM tes t1, edisites t2 WHERE t1.ta
 $ttes     = mysqli_num_rows($qtes);
 $rtes     = mysqli_fetch_array($qtes);
 
+$jammulaidatetime = new DateTime($rtes['jam_mulai']);
+$logintime     = date("H:i:s");
+$logindatetime = new DateTime($logintime);
+$mulai = 0;
+
+if ($logindatetime > $jammulaidatetime) {
+    $mulai = 1;
+}
+else {
+  $mulai = 0;
+}
+
 //kalo ga ada tes yg aktif hari ini
-if ($ttes < 1) {
-    echo '<div class="alert alert-info">Schematics belum dimulai. Harap bersabar!</div>';
+if ($ttes < 1 or $mulai == 0) {
+    echo '<div class="alert alert-info">
+    <p>Schematics belum dimulai. Harap bersabar!</p></div>
+    <p>Petunjuk pengerjaan: </p>
+<ul>
+  <li>Pastikan anda telah terhubung ke jaringan internet</li>
+    <li>Peserta diharapkan mengerjakan menggunakan laptop/komputer</li>
+  <li>Setiap tim hanya dapat login dengan 1 device (laptop/komputer)</li>
+  <li>Tidak ada penambahan waktu bagi yang terlambat mengerjakan</li>
+  <li>Tombol reset digunakan untuk mengosongkan jawaban</li>
+  <li>Peserta dapat mengakhiri tes secara manual dengan tombol akhiri tes yang ada pada soal terakhir</li>
+  <li>Penilaian : Benar +3, Salah -1, Tidak menjawab 0</li>
+    <li>Pastikan minimal salah satu anggota tim anda telah tergabung dalam grup <a href="https://www.facebook.com/groups/129701847678188/" target="_blank">Facebook NLC Online</a></li>
+  <li>Grup facebook ini digunakan untuk alat komunikasi antara peserta dan panitia</li>
+  <li>Apabila ada kesalahan teknis dari peserta, maka bukan tanggung jawab panitia</li>
+  <li>Apabila ditemukan indikasi kecurangan, peserta akan didiskualifikasi</li>
+  <li>Hasil penyisihan diumumkan maksimal 7 hari setelah babak penyisihan</li>
+</ul>';
 }
 
 //kalo ada 1 ya lgsg dibawa ke detail tes tsb aja gan. ini buat schematicsnya nanti, pas hari H biar ga bingung milih tesnya kayak kode yg di bawah
 else if ($ttes == 1) {
-    /*
-    echo $logintime;
-    echo '<br>Init Login: ';
-    echo $initlogin;
-    echo '<br>Beda: ';
-    echo $elapsedtime; 
-    echo '<br>';
-    echo $durasikurang;
-    echo '<br>Sisa waktu awal: ';
-    echo $tnilai['sisa_waktu']; 
-    echo '<br>';
-    echo $durasiawal;
-    echo '<br>Hasil ngurang: ';
-    echo $waktubaru;
-    echo '<br>Menit detik: ';
-    echo $hasilakhir;*/
     echo '<script> show_detail(' . $rtes['id_tes'] . '); </script>';
 }
 //ini buat warmupnya, dilist ada berapa tes yg aktif. desain seadanya

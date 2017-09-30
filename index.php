@@ -34,7 +34,8 @@ if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
    <link rel="stylesheet" type="text/css" href="css/style.css"/>
    
    <script src="https://code.jquery.com/jquery-2.0.2.min.js" integrity="sha256-TZWGoHXwgqBP1AF4SZxHIBKzUdtMGk0hCQegiR99itk=" crossorigin="anonymous"></script>
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script></head>
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ </head>
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top"> 

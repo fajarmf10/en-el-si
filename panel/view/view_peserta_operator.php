@@ -12,6 +12,7 @@ include "../../library/function_form.php";
 
 create_title("list-alt", "Manajemen Peserta");
 create_button("success", "refresh", "Refresh", "btn-refresh", "refresh_data()");
+create_button("success", "refresh", "Reset all", "btn-refresh", "reset_login_all()");
 
 create_table(array("ID Tim", "Nama Tim", "Password", "Edisi", "Status", "Aksi"));
 ?>

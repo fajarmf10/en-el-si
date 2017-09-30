@@ -3,6 +3,7 @@
 <?php
 session_start();
 include "library/config.php";
+include "library/function_noinject.php";
 
 if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
     header('location: login.php');
@@ -11,16 +12,16 @@ if (empty($_SESSION['id_tim']) or empty($_SESSION['password'])) {
 //ubah status peserta dan membuat array untuk tabel nilai
 mysqli_query($mysqli, "UPDATE peserta SET status='mengerjakan' WHERE id_tim='$_SESSION[id_tim]'");
 
-$qwtes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$_GET[tes]'"));
+$get_tes = antiinjeksi($_GET['tes']);
+$qwtes = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM tes WHERE id_tes='$get_tes'"));
 $jumsoal = $qwtes['jml_soal']/5;
 $numbers = range(1, $jumsoal);
 shuffle($numbers);
 $arr_soal    = array();
 $arr_jawaban = array();
-
 if ($qwtes['acak_soal'] == 'Y'){
   for ($k=0;$k<$jumsoal;$k++){
-    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' AND id_kelompok=$numbers[$k] LIMIT $qwtes[jml_soal]");
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$get_tes' AND id_kelompok=$numbers[$k] LIMIT $qwtes[jml_soal]");
     $arr_soal_kelompok = array();
     $arr_jawaban_kelompok = array();
     while ($rsoal = mysqli_fetch_array($qsoal)) {
@@ -32,13 +33,12 @@ if ($qwtes['acak_soal'] == 'Y'){
   }
 }
 else{
-    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$_GET[tes]' ORDER BY id_kelompok, id_soal LIMIT $qwtes[jml_soal]");
+    $qsoal = mysqli_query($mysqli, "SELECT id_soal FROM soal WHERE id_tes='$get_tes' ORDER BY id_kelompok, id_soal LIMIT $qwtes[jml_soal]");
     while ($rsoal = mysqli_fetch_array($qsoal)) {
       $arr_soal[]    = $rsoal['id_soal'];
       $arr_jawaban[] = 0;
     }  
 }
-
 //kalo gaada soal
 //if (mysqli_num_rows($qsoal) == 0)
 //    die('<div class="alert alert-warning">Belum ada soal pada tes ini. Silahkan menghubungi panitia!</div>');
@@ -47,23 +47,23 @@ $acak_soal = implode(",", $arr_soal);
 $jawaban   = implode(",", $arr_jawaban);
 
 //input data ke tabel nilai jika data nilai belum ada
-$qnilai = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");
+$qnilai = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$get_tes'");
 if (mysqli_num_rows($qnilai) < 1) {
     //mysqli_query($mysqli, "INSERT INTO `nilai` SET `id_tim`='$_SESSION[id_tim]', `id_tes`='$_GET[tes]', `acak_soal`='$acak_soal', `jawaban`='$jawaban', `sisa_waktu`='$_SESSION[waktu_sisa]', `help`='Y'");
-    mysqli_query($mysqli, "INSERT INTO `nilai`(`id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`, `help`) VALUES ('$_SESSION[id_tim]', '$_GET[tes]', '$acak_soal', '$jawaban', '$_SESSION[jadinya]', '0', '', 'Y')");
+    mysqli_query($mysqli, "INSERT INTO `nilai`(`id_tim`, `id_tes`, `acak_soal`, `jawaban`, `sisa_waktu`, `jml_benar`, `nilai`, `help`) VALUES ('$_SESSION[id_tim]', '$get_tes', '$acak_soal', '$jawaban', '$_SESSION[jadinya]', '0', '', 'Y')");
 }
 // else{
 //   mysqli_query($mysqli, "UPDATE nilai SET sisa_waktu='$_SESSION[waktu_sisa]', help='Y' WHERE id_tes='$tes[id_tes]' AND id_tim='$_SESSION[id_tim]'");
 // }
 
 //timer fix
-$qnilai     = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$_GET[tes]'");
+$qnilai     = mysqli_query($mysqli, "SELECT * FROM `nilai` WHERE `id_tim`='$_SESSION[id_tim]' AND `id_tes`='$get_tes'");
 $rnilai     = mysqli_fetch_array($qnilai);
 $sisa_waktu = explode(":", $rnilai['sisa_waktu']);
 
 echo '<h3 class="page-header"><b>' . $qwtes['judul'] . ' <span class="pull-right"> Sisa Waktu: <span class="menit">' . $sisa_waktu[0] . '</span> : <span class="detik"> ' . $sisa_waktu[1] . ' </span></span></b></h3>
 
-<input type="hidden" id="tes" value="' . $_GET['tes'] . '">
+<input type="hidden" id="tes" value="' . $get_tes . '">
 <input type="hidden" id="sisa_waktu">';
 
 echo '<div class="row">
@@ -133,8 +133,8 @@ for ($s = 0; $s < count($arr_soal); $s++) {
         $pilihan = str_replace("../media", "media", $arr_pilihan[$i]['pilihan']);
         echo '<div class="row pilihan">
    <div class="col-xs-2">
-     <input type="radio" class="jawab-'.$no.'" data-huruf="'.$arr_huruf[$i].'" name="jawab-'.$no.'" id="yyy huruf-'.$no.'-'.$i.'" '.$checked.'>
-     <label for="yyy huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
+     <input type="radio" name="jawab-' . $no . '" data-huruf="' . $arr_huruf[$i] . '" name="jawab-' . $no . '" id="yyy huruf-' . $no . '-' . $i . '" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')" '.$checked.'>
+     <label for="yyy huruf-' . $no . '-' . $i . '" class="huruf-pilihan huruf" id="stangstung" onclick="kirim_jawaban(' . $s . ', ' . $arr_pilihan[$i]['no'] . ')"> ' . $arr_huruf[$i] . ' </label>
     </div>
 <div class="col-xs-10">
    <div class="teks">' . $pilihan . ' </div> 
@@ -179,7 +179,7 @@ echo '</div></div>';
 echo '<div class="modal fade" id="modal-selesai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog modal-lg">
    <div class="modal-content">
-   <form  onsubmit="return selesai_tes(' . $_GET['tes'] . ')">
+   <form  onsubmit="return selesai_tes(' . $get_tes . ')">
       
 <div class="modal-header">
   <h3 class="modal-title">Apakah kamu yakin?</h3>
@@ -191,7 +191,7 @@ echo '<div class="modal fade" id="modal-selesai" tabindex="-1" role="dialog" ari
 </div>
       
 <div class="modal-footer">
-   <button type="submit" class="btn btn-danger" onclick="return selesai_tes(' . $_GET['tes'] . ')"> Selesai </button>
+   <button type="submit" class="btn btn-danger" onclick="return selesai_tes(' . $get_tes . ')"> Selesai </button>
    <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal </button>
 </div>
       

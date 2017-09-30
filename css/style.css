@@ -28,7 +28,7 @@ footer{
    color: #FFFFFF;
 }
 a {
-	color: #B71C1C;
+   color: #B71C1C;
 }
 
 
@@ -84,14 +84,14 @@ a {
    display: inline-block;
 }
 /*Menyembunyikan input radio*/
-input[type=radio]{
+/*input[type=radio]{
    display: none;
 }
 input[type=radio]:checked + .huruf-pilihan{
    background: #40BCD8;
-}
+}*/
 .resetcok{
-   background-color: transparent;
+   background: transparent;
 }
 .pilihan{
    margin-bottom: 15px;

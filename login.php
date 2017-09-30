@@ -2,6 +2,7 @@
 session_start();
 ob_start();
 
+
 $lastModified = filemtime(__FILE__);
 $etagFile = md5(__FILE__);
 
@@ -57,7 +58,6 @@ $(function(){
 });
 </script>
 
-
 </head>
 <body>
 	<div class="container-fluid">
@@ -71,7 +71,7 @@ $(function(){
 					<form class="login-form">
 						<div class="input-group">
 							<div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-							<input type="text" name="id_tim" placeholder="ID Tim" autofocus class="form-control">
+							<input type="text" name="id_tim" placeholder="Email" autofocus class="form-control">
 						</div><br/>
 						
 						<div class="input-group">
@@ -79,7 +79,7 @@ $(function(){
 							<input type="password" name="password" placeholder="Password" class="form-control">
 						</div><br/>
 
-						<button class="btn btn-primary pull-right login-button"><i class="glyphicon glyphicon-log-in"></i> Login Schematics</button><br/>
+						<button class="btn btn-primary pull-right login-button"><i class="glyphicon glyphicon-log-in"></i> Login Schematics </button><br/>
 					</form>
 					</div>
 				</div>

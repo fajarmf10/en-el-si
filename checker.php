@@ -6,7 +6,6 @@ include "library/function_noinject.php";
 $id_tim   = antiinjeksi($_POST['id_tim']);
 $password = antiinjeksi(md5($_POST['password']));
 
-
 # check if user with this id already fetched in db.
 $pre_cekuser = mysqli_query ($mysqli, "SELECT * FROM peserta WHERE id_tim='$id_tim'");
 $pre_jmluser = mysqli_num_rows ($pre_cekuser);
@@ -35,27 +34,16 @@ if ($pre_jmluser == 0) {
         mysqli_query ($link, "INSERT INTO peserta VALUES ('$id_tim',
                                                           '$namatim',
                                                           '$password',
-                                                          'schematics',
+                                                          '1',
                                                           'off')");
     }
     
     curl_close ($login_request);
 }
 
-
-$cekuser = mysqli_query($mysqli, "SELECT * FROM peserta WHERE id_tim='$id_tim' AND password='$password'");
-$jmluser = mysqli_num_rows($cekuser);
-$data    = mysqli_fetch_array($cekuser);
-if ($jmluser > 0) {
+$data    = mysqli_fetch_array($pre_cekuser);
+if ($pre_jmluser > 0) {
     if ($data['status'] == "off") {
-        /*
-        
-        $_SESSION['username']    = $data['id_tim'];
-        $_SESSION['namatim']   = $data['nama'];
-        $_SESSION['password']    = $data['password'];
-        $_SESSION['edisi']     = $data['id_edisi'];
-        */
-        
         $_SESSION['id_tim']   = $data['id_tim'];
         $_SESSION['namatim']  = $data['nama'];
         $_SESSION['password'] = $data['password'];
